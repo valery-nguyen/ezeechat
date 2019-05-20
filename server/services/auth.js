@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const key = require("../../config/keys").secretOrkey;
+const key = require("../../config/keys").secretOrKey;
 
 const validateSignupInput = require("../validation/signup");
 const validateLoginInput = require("../validation/login");
@@ -46,6 +46,7 @@ const signup = async data => {
 };
 
 const login = async data => {
+  console.log(data);
   try {
     const { message, isValid } = validateLoginInput(data);
 
@@ -62,7 +63,7 @@ const login = async data => {
     if (!isValidPassword) throw new Error("Invalid password");
 
     const token = jwt.sign({ id: user.id }, key);
-
+    console.log(token);
     return { token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;
