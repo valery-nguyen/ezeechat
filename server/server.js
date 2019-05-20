@@ -5,6 +5,8 @@ const db = require("../config/keys.js").MONGO_URI;
 const expressGraphQL = require("express-graphql");
 const cors = require('cors');
 const User = require("./models/User");
+const Channel = require("./models/Channel");
+const Message = require("./models/Message");
 const schema = require("./schema/schema");
 const app = express();
 
@@ -23,7 +25,6 @@ app.use(cors());
 app.use(
   "/graphql",
   expressGraphQL(req => {
-    console.log(req.headers);
     return {
       schema,
       context: {
