@@ -3,7 +3,7 @@ import { Query, Subscription, subscribeToMore } from "react-apollo";
 import Queries from "../../graphql/queries";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
-const { FETCH_MESSAGES, FETCH_CHANNEL } = Queries;
+const { FETCH_CHANNEL } = Queries;
 const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
 class MainChat extends React.Component {

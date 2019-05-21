@@ -15,7 +15,6 @@ class CreateMessage extends Component {
       message: "",
       channel: ""
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

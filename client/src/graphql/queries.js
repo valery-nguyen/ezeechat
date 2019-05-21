@@ -42,14 +42,16 @@ export default {
     }
   `,
   FETCH_MESSAGES: gql`
-  {
-    messages {
-      _id, 
-      user_id
-      body,
-      date,
-      channel
-    }
+    query fetchMessages($id: ID!) {
+      channel(_id: $id) {
+        _id       
+        messages {
+          body
+          _id
+          date
+          user_id
+        }
+      }
   }
   `
 };
