@@ -111,8 +111,8 @@ const mutation = new GraphQLObjectType({
     deleteMessage: {
       type: MessageType,
       args: { _id: { type: GraphQLID } },
-      resolve(_, { _id }) {
-        return Message.remove({ _id });
+      resolve(_, _id, context) {
+        return MessageService.deleteMessage(_id, context);
       }
     },
     updateMessage: {

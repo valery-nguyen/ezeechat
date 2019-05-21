@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const key = require("../../config/keys").secretOrKey;
 const User = require("../models/User");
 const Message = require("../models/Message");
+const Channel = require("../models/Channel");
 const pubsub = require('../schema/pubsub');
 const channelService = require('./channels');
 
@@ -19,6 +20,7 @@ const addMessage = async (data, context) => {
     });
 
     await message.save();
+    console.log(message);
     await channelService.addChannelMessage({_id: channel, message: message}, context);
     
     await pubsub.publish('MESSAGE_SENT', { messageSent: message });
@@ -43,4 +45,37 @@ const updateMessage = async ({ id, body }) => {
   });
 };
 
-module.exports = { addMessage, updateMessage };
+const deleteMessage = async (data, context) => {
+  try {
+    // check for loggedin user
+    const token = context.token;
+
+    const decoded = await jwt.verify(token, key);
+    const { id } = decoded;
+    const loggedIn = await User.findById(id);
+    if (!loggedIn) {
+      throw new Error("A logged in user is required");
+    }
+
+    // update channel / delete message
+    const { _id } = data;
+    let message = await Message.findById(_id);
+    let channel = await Channel.findById(message.channel);
+    let messages = channel.messages;
+
+    if (messages.includes(_id)) messages.splice(messages.indexOf(_id), 1);
+
+    channel.messages = messages;
+    await channel.save();
+    await message.remove();
+
+    return message;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+
+module.exports = { addMessage, updateMessage, deleteMessage };
+
