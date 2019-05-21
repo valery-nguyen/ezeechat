@@ -149,7 +149,6 @@ const addChannelMessage = async (data, context) => {
     // update channel
     const { _id, message } = data;
     let channel = await Channel.findById(_id);
-    // console.log(channel);
     if (!channel.messages.includes(message)) channel.messages.push(message);
     await channel.save();
 
