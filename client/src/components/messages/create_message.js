@@ -15,7 +15,6 @@ class CreateMessage extends Component {
       message: "",
       channel: ""
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -46,7 +45,7 @@ class CreateMessage extends Component {
       variables: {
         body: this.state.body,
         user_id: "",
-        channel: this.props.channel.split("/").slice(-1)[0]
+        channel: this.props.history.location.pathname.split("/").slice(-1)[0]
       }
     });
   }
