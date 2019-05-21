@@ -3,18 +3,19 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLFloat } 
 const mongoose = require("mongoose");
 const MessageType = require('./types/message_type');
 const Message = mongoose.model("messages");
+const pubsub = require('./pubsub');
 
-const messagesSubscription = {
+const messageSent = {
   type: MessageType,
-  resolve(root, args, ctx, info) {
-    console.log(Message.find({}));
-    return Message.find({});
-  }
+  resolve(data) {
+    return data.messageSent;
+  },
+  subscribe: () => pubsub.asyncIterator(['MESSAGE_SENT'])
 };
 
 const subscription = new GraphQLObjectType({
   name: "Subscription",
-  fields: () => ({messagesSubscription})
+  fields: () => ({ messageSent })
 });
 
 module.exports = subscription;

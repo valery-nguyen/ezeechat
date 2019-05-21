@@ -100,11 +100,6 @@ class ChannelDetail extends React.Component {
                   </div>
                 )}
               </Mutation>
-
-
-
-
-
             </div>
           );
         }}

@@ -13,19 +13,6 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import Mutations from "./graphql/mutations";
 
-import express from 'express';
-import {
-  graphqlExpress,
-  graphiqlExpress,
-} from 'apollo-server-express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import { execute, subscribe } from 'graphql';
-import { createServer } from 'http';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
-
-import { schema } from '../../server/schema/schema';
-
 const { VERIFY_USER } = Mutations;
 
 const cache = new InMemoryCache({
@@ -36,39 +23,6 @@ const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
 });
 
-/// New stuff
-
-// const PORT = 5000;
-// const server = express();
-
-// server.use('*', cors({ origin: `http://localhost:${PORT}` }));
-
-// server.use('/graphql', bodyParser.json(), graphqlExpress({
-//   schema
-// }));
-
-// server.use('/graphiql', graphiqlExpress({
-//   endpointURL: '/graphql',
-//   subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`
-// }));
-
-// // Wrap the Express server
-// const ws = createServer(server);
-// ws.listen(PORT, () => {
-//   console.log(`Apollo Server is now running on http://localhost:${PORT}`);
-//   // Set up the WebSocket for handling GraphQL subscriptions
-//   new SubscriptionServer({
-//     execute,
-//     subscribe,
-//     schema
-//   }, {
-//       server: ws,
-//       path: '/subscriptions',
-//     });
-// });
-
-////
-
 const httpLink = createHttpLink({
   uri: "http://localhost:5000/graphql",
   headers: {
@@ -77,7 +31,7 @@ const httpLink = createHttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/subscriptions`,
+  uri: `ws://localhost:4000/subscriptions`,
   options: {
     reconnect: true,
   }

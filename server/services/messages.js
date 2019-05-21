@@ -17,7 +17,7 @@ const addMessage = async (data, context) => {
       body,
     });
     await message.save();
-    await pubsub.publish('MESSAGE_SENT', { ['MESSAGE_SENT']: message });
+    await pubsub.publish('MESSAGE_SENT', { messageSent: message });
 
     return message;
   } else {

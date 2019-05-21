@@ -1,23 +1,19 @@
 import React from 'react';
-import { Query, subscribeToMore } from "react-apollo";
+import { Query, Subscription, subscribeToMore } from "react-apollo";
 import Queries from "../../graphql/queries";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
 const { FETCH_MESSAGES } = Queries;
-const { NEW_MESSAGES_SUBSCRIPTION } = Subscriptions;
+const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
 class MainChat extends React.Component {
 
   _subscribeToNewMessages() {
-    console.log("outsdie");
     return subscribeToMore => {
-      console.log("werwer");
       return subscribeToMore({
-        document: NEW_MESSAGES_SUBSCRIPTION,
+        document: NEW_MESSAGE_SUBSCRIPTION,
         updateQuery: (prev, { subscriptionData }) => {
-          console.log(subscriptionData);
           if (!subscriptionData.data) return prev;
-          console.log(prev);
           const newMessage = subscriptionData.data.newMessage;
           const exists = prev.feed.messages.find(({ id }) => id === newMessage.id);
           if (exists) return prev;
@@ -38,7 +34,6 @@ class MainChat extends React.Component {
         {({ subscribeToMore, loading, error, data, refetch }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
-          console.log("here");
           this._subscribeToNewMessages(subscribeToMore);
 
           return (
@@ -52,6 +47,15 @@ class MainChat extends React.Component {
                 ))}
               </ul>
               <CreateMessage />
+              <Subscription
+                subscription={NEW_MESSAGE_SUBSCRIPTION}
+              >
+                {({ data, loading }) => {
+                  console.log(data);
+                  // return <h4>New comment: {!loading && data.messageSent}</h4>
+                  return <h4>New Comment data: {(data) ? data.messageSent.body : "data null"}</h4>;
+                }}
+              </Subscription>
             </div>
           );
         }}

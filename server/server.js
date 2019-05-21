@@ -10,6 +10,12 @@ const Message = require("./models/Message");
 const schema = require("./schema/schema");
 const app = express();
 
+const  { ApolloServer, gql } = require('apollo-server-express');
+
+const  { execute, subscribe } = require('graphql');
+const  { createServer } = require('http');
+const  { SubscriptionServer } = require('subscriptions-transport-ws');
+
 if (!db) {
   throw new Error("You must provide a string to connect to mLab");
 }
@@ -34,5 +40,21 @@ app.use(
     };
   })
 );
+
+// Wrap the Express server
+const PORT = 4000;
+const ws = createServer(app);
+ws.listen(PORT, () => {
+  console.log(`Web Socket Server is now running on http://localhost:${PORT}`);
+  // Set up the WebSocket for handling GraphQL subscriptions
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema,
+  }, {
+      server: ws,
+      path: '/subscriptions',
+    });
+});
 
 module.exports = app;
