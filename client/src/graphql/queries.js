@@ -40,7 +40,8 @@ export default {
       _id, 
       user_id
       body,
-      date
+      date,
+      channel
     }
   }
   `

@@ -6,16 +6,19 @@ const pubsub = require('../schema/pubsub');
 
 const addMessage = async (data, context) => {
   const token = context.token;
-  const { body } = data;
+  const { body, channel } = data;
+  console.log(data);
 
   const decoded = jwt.verify(token, key);
   const { id } = decoded;
   if (id) {
     let message = new Message({
       user_id: id,
-      // channel_id,
+      channel,
       body,
     });
+
+    console.log(message);
     await message.save();
     await pubsub.publish('MESSAGE_SENT', { messageSent: message });
 

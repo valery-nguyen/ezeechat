@@ -71,12 +71,13 @@ export default {
     }
   `,
   NEW_MESSAGE: gql`
-    mutation NewMessage($user_id: ID!, $body: String!) {
-      newMessage(user_id: $user_id, body: $body) {
+    mutation NewMessage($user_id: ID!, $body: String!, $channel: ID!) {
+      newMessage(user_id: $user_id, body: $body, channel: $channel) {
         _id
         body
         user_id
         date
+        channel
       }
     }
   `,
