@@ -76,7 +76,7 @@ export default {
         _id
         body
         user_id
-        date,
+        date
         channel
       }
     }

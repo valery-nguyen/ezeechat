@@ -1,7 +1,6 @@
 import React from "react";
-import { Mutation } from "react-apollo";
-
-import { Query } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
+import { Link } from "react-router-dom";
 import Queries from "../../graphql/queries";
 import Mutations from "../../graphql/mutations";
 const { FETCH_CHANNEL } = Queries;
@@ -49,7 +48,7 @@ class ChannelDetail extends React.Component {
           if (error) return <p>Error</p>;
           return (
             <div>        
-              <h3>channel id:{data.channel._id}</h3>              
+              <h3><Link to={`/channels/${data.channel._id}`}>channel id:{data.channel._id}</Link></h3>              
               <h3>host id:{data.channel.host_id}</h3>
               <h3>channel name:{data.channel.name}</h3>
               <ul>channel users:{data.channel.users.map(user => (

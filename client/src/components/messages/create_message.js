@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Queries from '../../graphql/queries';
 import Mutations from "../../graphql/mutations";
+import { withRouter } from 'react-router';
 const { FETCH_MESSAGES, IS_LOGGED_IN } = Queries;
 const { NEW_MESSAGE } = Mutations;
 
 class CreateMessage extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       body: "",
       message: "",
-      channel: this.props.channel.split("/").slice(-1)[0]
+      channel: ""
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   update(field) {
@@ -42,7 +46,7 @@ class CreateMessage extends Component {
       variables: {
         body: this.state.body,
         user_id: "",
-        channel: this.state.channel
+        channel: this.props.channel.split("/").slice(-1)[0]
       }
     });
   }
@@ -75,4 +79,4 @@ class CreateMessage extends Component {
   }
 }
 
-export default CreateMessage;
+export default withRouter(CreateMessage);
