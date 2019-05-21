@@ -141,6 +141,7 @@ const addChannelMessage = async (data, context) => {
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
     const loggedIn = await User.findById(id);
+    
     if (!loggedIn) {
       throw new Error("A logged in user is required");
     }
@@ -148,7 +149,7 @@ const addChannelMessage = async (data, context) => {
     // update channel
     const { _id, message } = data;
     let channel = await Channel.findById(_id);
-
+    // console.log(channel);
     if (!channel.messages.includes(message)) channel.messages.push(message);
     await channel.save();
 

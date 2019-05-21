@@ -46,20 +46,19 @@ class CreateMessage extends Component {
       variables: {
         body: this.state.body,
         user_id: "",
-        channel: this.props.history.location.pathname.slice(10)
+        channel: this.props.channel.split("/").slice(-1)[0]
       }
     });
   }
 
   render() {
-
+    // debugger;
     return (
       <Mutation
         mutation={NEW_MESSAGE}
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-
           const { body } = data.newMessage;
         }}
       >

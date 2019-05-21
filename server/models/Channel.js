@@ -15,11 +15,11 @@ const ChannelSchema = new Schema({
     ref: 'users',
     default: []
   }],
-  // messages: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'messages',
-  //   default: []
-  // }],
+  messages: [{
+    type: Schema.Types.ObjectId,
+    ref: 'messages',
+    default: []
+  }],
   created_at: {
     type: Date,
     default: Date.now

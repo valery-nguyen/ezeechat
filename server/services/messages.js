@@ -3,11 +3,11 @@ const key = require("../../config/keys").secretOrKey;
 const User = require("../models/User");
 const Message = require("../models/Message");
 const pubsub = require('../schema/pubsub');
+const channelService = require('./channels');
 
 const addMessage = async (data, context) => {
   const token = context.token;
   const { body, channel } = data;
-  console.log(data);
 
   const decoded = jwt.verify(token, key);
   const { id } = decoded;
@@ -18,8 +18,9 @@ const addMessage = async (data, context) => {
       body,
     });
 
-    console.log(message);
     await message.save();
+    await channelService.addChannelMessage({_id: channel, message: message}, context);
+    
     await pubsub.publish('MESSAGE_SENT', { messageSent: message });
 
     return message;

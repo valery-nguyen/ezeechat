@@ -6,7 +6,7 @@ const MessageSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
-  channel: {
+  channel_id: {
     type: Schema.Types.ObjectId,
     ref: "Channel"
   },
