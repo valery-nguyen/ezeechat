@@ -5,13 +5,11 @@ const Channel = require("../models/Channel");
 const validateChannelInput = require("../validation/create_channel");
 const validateChannelUpdateInput = require("../validation/update_channel");
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjZTJjZGYzYzY3MjNkMTc4NzE5ZTE3OCIsImlhdCI6MTU1ODM3NTUwM30.QNRHFQ_kSRP9Yx9NA-bSEDcemtKDqJ69D3Eop6a1tO8"; //VTN remove
-
-const createChannel = async data => {
+const createChannel = async (data, context) => {
   try {
     // check for loggedin user
-    // const { token } = data;  //VTN put back and remove line 8
-    
+    const token = context.token;
+
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
     const loggedIn = await User.findById(id);
@@ -47,10 +45,10 @@ const createChannel = async data => {
   }
 };
 
-const updateChannelName = async data => {
+const updateChannelName = async (data, context) => {
   try {
     // check for loggedin user
-    // const { token } = data; //VTN put back and remove line 8
+    const token = context.token;
     
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
@@ -82,10 +80,10 @@ const updateChannelName = async data => {
   }
 };
 
-const addChannelUser = async data => {
+const addChannelUser = async (data, context) => {
   try {
     // check for loggedin user
-    // const { token } = data; //VTN put back and remove line 8
+    const token = context.token;
 
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
@@ -107,10 +105,10 @@ const addChannelUser = async data => {
   }
 };
 
-const removeChannelUser = async data => {
+const removeChannelUser = async (data, context) => {
   try {
     // check for loggedin user
-    // const { token } = data; //VTN put back and remove line 8
+    const token = context.token;
 
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
@@ -135,10 +133,11 @@ const removeChannelUser = async data => {
 };
 
 //VTN: verify that addchannelMessage works when messages are ready
-const addChannelMessage = async data => {
+const addChannelMessage = async (data, context) => {
   try {
     // check for loggedin user
-    const { token } = data;
+    const token = context.token;
+    
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
     const loggedIn = await User.findById(id);
