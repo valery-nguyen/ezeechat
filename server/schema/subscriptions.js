@@ -1,21 +1,20 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLFloat } = graphql;
 const mongoose = require("mongoose");
-const PubSub = require('./pubsub');
+const MessageType = require('./types/message_type');
+const Message = mongoose.model("messages");
 
-const MessageType = require('./types/user_type');
-
+const messagesSubscription = {
+  type: MessageType,
+  resolve(root, args, ctx, info) {
+    console.log(Message.find({}));
+    return Message.find({});
+  }
+};
 
 const subscription = new GraphQLObjectType({
   name: "Subscription",
-  fields: {
-    createMessage: {
-      type: MessageType,
-      postAdded: {
-        subscribe: () => pubsub.asyncIterator(['message_created']),
-      },
-    },
-  }
+  fields: () => ({messagesSubscription})
 });
 
 module.exports = subscription;

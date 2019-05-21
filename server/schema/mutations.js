@@ -7,7 +7,6 @@ const MessageType = require('./types/message_type');
 const AuthService = require('./../services/auth');
 const ChannelsService = require('./../services/channels');
 const MessageService = require('./../services/messages');
-const PubSub = require('./pubsub');
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",

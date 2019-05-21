@@ -46,7 +46,6 @@ const signup = async data => {
 };
 
 const login = async data => {
-  console.log(data);
   try {
     const { message, isValid } = validateLoginInput(data);
 
@@ -63,7 +62,7 @@ const login = async data => {
     if (!isValidPassword) throw new Error("Invalid password");
 
     const token = jwt.sign({ id: user.id }, key);
-    console.log(token);
+
     return { token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;

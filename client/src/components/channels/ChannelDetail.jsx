@@ -47,7 +47,6 @@ class ChannelDetail extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
-            console.log(data)
           return (
             <div>        
               <h3>channel id:{data.channel._id}</h3>              
@@ -65,7 +64,6 @@ class ChannelDetail extends React.Component {
                 onError={err => this.setState({ message: err.message })}
                 update={(cache, data) => this.updateCache(cache, data)}
                 onCompleted={data => {
-                  console.log(data);
                   const { name } = data.addChannelUser;
                   this.setState({
                     message: `You successfully join channel ${name}`
@@ -87,7 +85,6 @@ class ChannelDetail extends React.Component {
                 onError={err => this.setState({ message: err.message })}
                 update={(cache, data) => this.updateCache(cache, data)}
                 onCompleted={data => {
-                  console.log(data);
                   const { name } = data.removeChannelUser;
                   this.setState({
                     message: `You successfully left channel ${name}`

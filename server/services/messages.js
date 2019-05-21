@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const key = require("../../config/keys").secretOrKey;
 const User = require("../models/User");
 const Message = require("../models/Message");
+const pubsub = require('../schema/pubsub');
 
 const addMessage = async (data, context) => {
   const token = context.token;
@@ -9,15 +10,15 @@ const addMessage = async (data, context) => {
 
   const decoded = jwt.verify(token, key);
   const { id } = decoded;
-  
   if (id) {
     let message = new Message({
       user_id: id,
       // channel_id,
       body,
-    }).save();
-    console.log(message);
-    // context.pubsub.publish(NEW_MESSAGE, message);
+    });
+    await message.save();
+    await pubsub.publish('MESSAGE_SENT', { ['MESSAGE_SENT']: message });
+
     return message;
   } else {
     throw new Error (
