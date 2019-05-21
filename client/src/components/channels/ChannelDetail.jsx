@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Queries from "../../graphql/queries";
 import Mutations from "../../graphql/mutations";
 const { FETCH_CHANNEL } = Queries;
-
-
 const { ADD_CHANNEL_USER, REMOVE_CHANNEL_USER } = Mutations;
 
 class ChannelDetail extends React.Component {

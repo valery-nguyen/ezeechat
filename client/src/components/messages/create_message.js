@@ -3,7 +3,7 @@ import { Mutation } from "react-apollo";
 import Queries from '../../graphql/queries';
 import Mutations from "../../graphql/mutations";
 import { withRouter } from 'react-router';
-const { FETCH_MESSAGES, IS_LOGGED_IN } = Queries;
+const { FETCH_MESSAGES } = Queries;
 const { NEW_MESSAGE } = Mutations;
 
 class CreateMessage extends Component {
@@ -51,7 +51,6 @@ class CreateMessage extends Component {
   }
 
   render() {
-    // debugger;
     return (
       <Mutation
         mutation={NEW_MESSAGE}
