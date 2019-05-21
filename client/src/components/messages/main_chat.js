@@ -8,55 +8,36 @@ const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
 class MainChat extends React.Component {
 
-  _subscribeToNewMessages() {
-    return subscribeToMore => {
-      return subscribeToMore({
-        document: NEW_MESSAGE_SUBSCRIPTION,
-        updateQuery: (prev, { subscriptionData }) => {
-          if (!subscriptionData.data) return prev;
-          const newMessage = subscriptionData.data.newMessage;
-          const exists = prev.feed.messages.find(({ id }) => id === newMessage.id);
-          if (exists) return prev;
-
-          return Object.assign({}, prev, {
-            feed: {
-              messages: [newMessage, ...prev.feed.messages],
-            }
-          });
-        }
-      });
-    };
-  }
-
   render() {
     return (
       <Query query={FETCH_MESSAGES}>
         {({ subscribeToMore, loading, error, data, refetch }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
-          this._subscribeToNewMessages(subscribeToMore);
-
+          let allMessages = [].concat(data.messages);
+          let allMessagesIds = data.messages.map(message => message._id);
           return (
-            <div>
-              <ul>
-                {data.messages.map(message => (
-                  <li key={message._id}>
-                    <p>{message.date}</p>
-                    <p>{message.body}</p>
-                  </li>
-                ))}
-              </ul>
-              <CreateMessage />
-              <Subscription
-                subscription={NEW_MESSAGE_SUBSCRIPTION}
-              >
-                {({ data, loading }) => {
-                  console.log(data);
-                  // return <h4>New comment: {!loading && data.messageSent}</h4>
-                  return <h4>New Comment data: {(data) ? data.messageSent.body : "data null"}</h4>;
-                }}
-              </Subscription>
-            </div>
+            <Subscription
+              subscription={NEW_MESSAGE_SUBSCRIPTION}
+            >
+              {({ data, loading }) => {
+                if (data && !allMessagesIds.includes(data.messageSent._id) & !loading) {
+                  allMessages.push(data.messageSent);
+                  allMessagesIds.push(data.messageSent._id);
+                }
+                return <div>
+                  <ul>
+                    {allMessages.map((message, idx) => (
+                      <li key={idx}>
+                        <p>{message.date}</p>
+                        <p>{message.body}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  <CreateMessage />
+                </div>
+              }}
+            </Subscription>
           );
         }}
       </Query>
