@@ -3,20 +3,21 @@ import { Query, Subscription, subscribeToMore } from "react-apollo";
 import Queries from "../../graphql/queries";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
-import { connect } from 'react-redux'
-const { FETCH_MESSAGES } = Queries;
+const { FETCH_MESSAGES, FETCH_CHANNEL } = Queries;
 const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
 class MainChat extends React.Component {
 
   render() {
     return (
-      <Query query={FETCH_MESSAGES}>
+      <Query query={FETCH_CHANNEL} variables={{ id: this.props.history.location.pathname.split("/").slice(-1)[0]}}>
         {({ subscribeToMore, loading, error, data, refetch }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
-          let allMessages = [].concat(data.messages);
-          let allMessagesIds = data.messages.map(message => message._id);
+          if (!data) return null;
+          console.log(data);
+          let allMessages = [].concat(data.channel.messages);
+          let allMessagesIds = data.channel.messages.map(message => message._id);
           return (
             <Subscription
               subscription={NEW_MESSAGE_SUBSCRIPTION}
