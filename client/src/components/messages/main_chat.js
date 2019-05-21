@@ -3,6 +3,7 @@ import { Query, Subscription, subscribeToMore } from "react-apollo";
 import Queries from "../../graphql/queries";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
+import { connect } from 'react-redux'
 const { FETCH_MESSAGES } = Queries;
 const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
@@ -46,7 +47,7 @@ class MainChat extends React.Component {
                   </li>
                 ))}
               </ul>
-              <CreateMessage />
+              <CreateMessage channel={this.props.history.location.pathname}/>
               <Subscription
                 subscription={NEW_MESSAGE_SUBSCRIPTION}
               >
@@ -63,5 +64,6 @@ class MainChat extends React.Component {
     )
   }
 }
+
 
 export default MainChat;

@@ -101,7 +101,8 @@ const mutation = new GraphQLObjectType({
       type: MessageType,
       args: {
         body: { type: GraphQLString },
-        user_id: { type: GraphQLID }
+        user_id: { type: GraphQLID },
+        channel: { type: GraphQLID }
       },
       resolve(_, args, context) {
         return MessageService.addMessage(args, context);

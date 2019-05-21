@@ -10,7 +10,8 @@ class CreateMessage extends Component {
     super(props);
     this.state = {
       body: "",
-      message: ""
+      message: "",
+      channel: this.props.channel.split("/").slice(-1)[0]
     };
   }
 
@@ -40,20 +41,20 @@ class CreateMessage extends Component {
     newMessage({
       variables: {
         body: this.state.body,
-        user_id: ""
+        user_id: "",
+        channel: this.state.channel
       }
     });
   }
 
   render() {
-
+    // debugger;
     return (
       <Mutation
         mutation={NEW_MESSAGE}
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-
           const { body } = data.newMessage;
         }}
       >
