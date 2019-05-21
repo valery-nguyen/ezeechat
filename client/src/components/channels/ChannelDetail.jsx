@@ -49,12 +49,12 @@ class ChannelDetail extends React.Component {
               <h3><Link to={`/channels/${data.channel._id}`}>channel id:{data.channel._id}</Link></h3>              
               <h3>host id:{data.channel.host_id}</h3>
               <h3>channel name:{data.channel.name}</h3>
-              <ul>channel users:{data.channel.users.map(user => (
+              {/* <ul>channel users:{data.channel.users.map(user => (
                 <li key={user._id}>
                   <p>user name:{user.name}</p>
                   <p>user email:{user.email}</p>
                 </li>
-              ))}</ul>
+              ))}</ul> */}
 
               <Mutation
                 mutation={ADD_CHANNEL_USER}

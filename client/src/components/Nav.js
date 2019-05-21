@@ -24,7 +24,7 @@ const Nav = props => {
                           cart: []
                         }
                       });
-                      props.history.push("/");
+                      // props.history.push("/");
                     }}
                   >
                     Log out

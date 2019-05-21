@@ -2,6 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import ChannelDetail from './ChannelDetail';
 import Queries from "../../graphql/queries";
+import './channels.css'
 const { FETCH_CHANNELS } = Queries;
 
 class ChannelIndex extends React.Component {
@@ -13,7 +14,7 @@ class ChannelIndex extends React.Component {
           if (error) return <p>Error</p>;
 
           return (
-            <div>
+            <div className="channel-list">
               <h3>All Channels</h3>
               {!data.channels || !data.channels.length ? (
                 <p>No channel available</p>

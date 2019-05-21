@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import Queries from '../../graphql/queries';
 import Mutations from "../../graphql/mutations";
 import { withRouter } from 'react-router';
+import './messages.css';
 const { FETCH_MESSAGES } = Queries;
 const { NEW_MESSAGE } = Mutations;
 
@@ -61,7 +62,7 @@ class CreateMessage extends Component {
         }}
       >
         {(newMessage, { data }) => (
-          <div>
+          <div className="send-message-form">
             <form onSubmit={e => this.handleSubmit(e, newMessage)}>
               <textarea
                 onChange={this.update("body")}

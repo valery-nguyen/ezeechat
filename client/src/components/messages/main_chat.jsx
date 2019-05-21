@@ -3,6 +3,7 @@ import { Query, Subscription, subscribeToMore } from "react-apollo";
 import Queries from "../../graphql/queries";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
+import './messages.css';
 const { FETCH_CHANNEL } = Queries;
 
 const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
@@ -10,8 +11,15 @@ const { NEW_MESSAGE_SUBSCRIPTION } = Subscriptions;
 class MainChat extends React.Component {
 
   render() {
+    let channel;
+    if (!this.props.history ) {
+      channel = "5ce2f5d2c902631a973f73e6";
+    } else {
+      channel = this.props.history.location.pathname.split("/").slice(-1)[0];
+    }
+
     return (
-      <Query query={FETCH_CHANNEL} variables={{ id: this.props.history.location.pathname.split("/").slice(-1)[0]}}>
+      <Query query={FETCH_CHANNEL} variables={{ id: channel }}>
         {({ subscribeToMore, loading, error, data, refetch }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
@@ -28,7 +36,7 @@ class MainChat extends React.Component {
                   allMessages.push(data.messageSent);
                   allMessagesIds.push(data.messageSent._id);
                 }
-                return <div>
+                return <div className="main-chat-window">
                   <ul>
                     {allMessages.map((message, idx) => (
                       <li key={idx}>
