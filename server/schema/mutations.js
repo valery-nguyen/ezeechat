@@ -3,8 +3,11 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLFloat } 
 const mongoose = require("mongoose");
 const UserType = require('./types/user_type');
 const ChannelType = require('./types/channel_type');
+const MessageType = require('./types/message_type');
 const AuthService = require('./../services/auth');
 const ChannelsService = require('./../services/channels');
+const MessageService = require('./../services/messages');
+const PubSub = require('./pubsub');
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -53,8 +56,8 @@ const mutation = new GraphQLObjectType({
       args: {
         name: { type: GraphQLString },
       },
-      resolve(_, args) {
-        return ChannelsService.createChannel(args);
+      resolve(_, args, context) {
+        return ChannelsService.createChannel(args, context);
       }
     },
     updateChannelName: {
@@ -63,8 +66,8 @@ const mutation = new GraphQLObjectType({
         _id: { type: GraphQLID },
         name: { type: GraphQLString }
       },
-      resolve(_, args) {
-        return ChannelsService.updateChannelName(args);
+      resolve(_, args, context) {
+        return ChannelsService.updateChannelName(args, context);
       }
     },
     addChannelUser: {
@@ -72,8 +75,8 @@ const mutation = new GraphQLObjectType({
       args: {
         _id: { type: GraphQLID }
       },
-      resolve(_, args) {
-        return ChannelsService.addChannelUser(args);
+      resolve(_, args, context) {
+        return ChannelsService.addChannelUser(args, context);
       }
     },
     removeChannelUser: {
@@ -81,8 +84,8 @@ const mutation = new GraphQLObjectType({
       args: {
         _id: { type: GraphQLID }
       },
-      resolve(_, args) {
-        return ChannelsService.removeChannelUser(args);
+      resolve(_, args, context) {
+        return ChannelsService.removeChannelUser(args, context);
       }
     },
     addChannelMessage: {
@@ -91,8 +94,35 @@ const mutation = new GraphQLObjectType({
         _id: { type: GraphQLID },
         message: { type: GraphQLID }
       },
+      resolve(_, args, context) {
+        return ChannelsService.addChannelMessage(args, context);
+      }
+    },
+    newMessage: {
+      type: MessageType,
+      args: {
+        body: { type: GraphQLString },
+        user_id: { type: GraphQLID }
+      },
+      resolve(_, args, context) {
+        return MessageService.addMessage(args, context);
+      }
+    },
+    deleteMessage: {
+      type: MessageType,
+      args: { _id: { type: GraphQLID } },
+      resolve(_, { _id }) {
+        return Message.remove({ _id });
+      }
+    },
+    updateMessage: {
+      type: MessageType,
+      args: {
+        id: { type: GraphQLID },
+        body: { type: GraphQLString }
+      },
       resolve(_, args) {
-        return ChannelsService.addChannelMessage(args);
+        return MessageService.updateMessage(args);
       }
     },
   }
