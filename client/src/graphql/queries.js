@@ -21,7 +21,7 @@ export default {
     }
   `,
   FETCH_CHANNEL: gql`
-    query fetchProduct($id: ID!) {
+    query fetchChannel($id: ID!) {
       channel(_id: $id) {
         _id,
         host_id,
@@ -30,19 +30,28 @@ export default {
           _id
           name
           email
+        },
+        messages {
+          _id, 
+          user_id
+          body,
+          date,
+          channel
         }
       }
     }
   `,
   FETCH_MESSAGES: gql`
-  {
-    messages {
-      _id, 
-      user_id
-      body,
-      date,
-      channel
-    }
+    query fetchMessages($id: ID!) {
+      channel(_id: $id) {
+        _id       
+        messages {
+          body
+          _id
+          date
+          user_id
+        }
+      }
   }
   `
 };
