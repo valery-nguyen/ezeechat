@@ -7,6 +7,7 @@ const cors = require('cors');
 const User = require("./models/User");
 const Channel = require("./models/Channel");
 const Message = require("./models/Message");
+const DirectMessage = require("./models/DirectMessage");
 const schema = require("./schema/schema");
 const app = express();
 

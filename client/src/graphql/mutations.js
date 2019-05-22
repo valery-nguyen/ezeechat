@@ -21,14 +21,15 @@ export default {
     mutation VerifyUser($token: String!) {
       verifyUser(token: $token) {
         loggedIn
+        _id
       }
     }
   `,
   CREATE_CHANNEL: gql`
     mutation createChannel($name: String) {
       createChannel(name: $name) {
-        _id,
-        host_id,
+        _id
+        host_id
         name
       }
     }
@@ -36,8 +37,8 @@ export default {
   UPDATE_CHANNEL_NAME: gql`
     mutation updateChannelName($id: ID, $name: String) {
       updateChannelName(_id: $id, name: $name) {
-        _id,
-        host_id,
+        _id
+        host_id
         name
       }
     }
@@ -45,9 +46,9 @@ export default {
   ADD_CHANNEL_USER: gql`
     mutation addChannelUser($id: ID) {
       addChannelUser(_id: $id) {
-        _id,
-        host_id,
-        name,
+        _id
+        host_id
+        name
         users {
           _id
           name
@@ -59,9 +60,9 @@ export default {
   REMOVE_CHANNEL_USER: gql`
     mutation removeChannelUser($id: ID) {
       removeChannelUser(_id: $id) {
-        _id,
-        host_id,
-        name,
+        _id
+        host_id
+        name
         users {
           _id
           name

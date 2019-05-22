@@ -7,6 +7,8 @@ const ChannelType = require("./channel_type");
 const Channel = mongoose.model("Channel");
 const MessageType = require('./message_type');
 const Message = mongoose.model("messages");
+const DirectMessageType = require('./direct_message_type');
+const DirectMessage = mongoose.model("DirectMessage");
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
@@ -48,6 +50,19 @@ const RootQueryType = new GraphQLObjectType({
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
         return Message.findById(args._id);
+      }
+    },
+    directmessages: {
+      type: new GraphQLList(DirectMessageType),
+      resolve() {
+        return DirectMessage.find({});
+      }
+    },
+    directmessage: {
+      type: DirectMessageType,
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return DirectMessage.findById(args._id);
       }
     }
   })
