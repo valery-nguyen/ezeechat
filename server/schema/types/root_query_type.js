@@ -39,6 +39,20 @@ const RootQueryType = new GraphQLObjectType({
         return Channel.findById(args._id);
       }
     },
+    userChannels: {
+      type: new GraphQLList(ChannelType),
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return (async () => {
+          const allChannels = await Channel.find({});
+          let userchannels = [];
+          allChannels.forEach(ch => {
+            if (ch.users.includes(args._id)) userchannels.push(ch);
+          });
+          return userchannels;
+        })();
+      }
+    },
     messages: {
       type: new GraphQLList(MessageType),
       resolve() {

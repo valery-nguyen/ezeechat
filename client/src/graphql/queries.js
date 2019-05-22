@@ -3,7 +3,12 @@ import gql from "graphql-tag";
 export default {
   IS_LOGGED_IN: gql`
     query IsUserLoggedIn {
-      isLoggedIn @client,
+      isLoggedIn @client
+    }
+  `,
+  CURRENT_USER: gql`
+    query currentUser {
+      currentUserId @client
     }
   `,
   FETCH_CHANNELS: gql`
@@ -37,6 +42,20 @@ export default {
           body
           date
           channel
+        }
+      }
+    }
+  `,
+  FETCH_USER_CHANNELS: gql`
+    query fetchUserChannels($id: ID!) {
+      userChannels(_id: $id) {
+        _id
+        host_id
+        name
+        users {
+          _id
+          name
+          email
         }
       }
     }
