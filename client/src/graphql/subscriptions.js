@@ -7,7 +7,19 @@ export default {
         _id, 
         user_id
         body,
-        date
+        date,
+        channel
+      }
+    }
+  `,
+  REMOVED_MESSAGE_SUBSCRIPTION: gql`
+    subscription onMessageRemoved{
+      messageRemoved {
+        _id, 
+        user_id
+        body,
+        date,
+        channel
       }
     }
   `

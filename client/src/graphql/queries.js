@@ -9,9 +9,9 @@ export default {
   FETCH_CHANNELS: gql`
     query fetchChannels {
       channels {
-        _id,
-        host_id,
-        name, 
+        _id
+        host_id
+        name
         users {
           _id
           name
@@ -23,35 +23,33 @@ export default {
   FETCH_CHANNEL: gql`
     query fetchChannel($id: ID!) {
       channel(_id: $id) {
-        _id,
-        host_id,
-        name, 
+        _id
+        host_id
+        name
         users {
           _id
           name
           email
         },
         messages {
-          _id, 
+          _id
           user_id
-          body,
-          date,
+          body
+          date
           channel
         }
       }
     }
   `,
   FETCH_MESSAGES: gql`
-    query fetchMessages($id: ID!) {
-      channel(_id: $id) {
-        _id       
-        messages {
-          body
-          _id
-          date
-          user_id
-        }
+    query fetchMessages {
+      messages {
+        _id
+        user_id
+        body
+        date
+        channel
       }
-  }
+    }
   `
 };

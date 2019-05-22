@@ -111,18 +111,18 @@ const mutation = new GraphQLObjectType({
     deleteMessage: {
       type: MessageType,
       args: { _id: { type: GraphQLID } },
-      resolve(_, _id, context) {
-        return MessageService.deleteMessage(_id, context);
+      resolve(_, args, context) {
+        return MessageService.deleteMessage(args, context);
       }
     },
     updateMessage: {
       type: MessageType,
       args: {
-        id: { type: GraphQLID },
+        _id: { type: GraphQLID },
         body: { type: GraphQLString }
       },
-      resolve(_, args) {
-        return MessageService.updateMessage(args);
+      resolve(_, args, context) {
+        return MessageService.updateMessage(args, context);
       }
     },
   }

@@ -1,5 +1,6 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, GraphQLFloat } = graphql;
+const { withFilter } = require('apollo-server');
 const mongoose = require("mongoose");
 const MessageType = require('./types/message_type');
 const Message = mongoose.model("messages");
@@ -10,12 +11,30 @@ const messageSent = {
   resolve(data) {
     return data.messageSent;
   },
-  subscribe: () => pubsub.asyncIterator(['MESSAGE_SENT'])
+  subscribe: withFilter(
+    () => pubsub.asyncIterator(['MESSAGE_SENT']),
+    (payload, variables) => {
+      return true;
+    }
+  )
+};
+
+const messageRemoved = {
+  type: MessageType,
+  resolve(data) {
+    return data.messageRemoved;
+  },
+  subscribe: withFilter(
+    () => pubsub.asyncIterator(['MESSAGE_REMOVED']),
+    (payload, variables) => {
+      return true;
+    }
+  )
 };
 
 const subscription = new GraphQLObjectType({
   name: "Subscription",
-  fields: () => ({ messageSent })
+  fields: () => ({ messageSent, messageRemoved })
 });
 
 module.exports = subscription;

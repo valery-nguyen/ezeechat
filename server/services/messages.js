@@ -20,11 +20,8 @@ const addMessage = async (data, context) => {
     });
 
     await message.save();
-    
     await channelService.addChannelMessage({_id: channel, message: message}, context);
-    
-    await pubsub.publish('MESSAGE_SENT', { messageSent: message });
-
+    await pubsub.publish('MESSAGE_SENT', { messageSent: message, channel: channel});
     return message;
   } else {
     throw new Error (
@@ -69,7 +66,8 @@ const deleteMessage = async (data, context) => {
     channel.messages = messages;
     await channel.save();
     await message.remove();
-    
+    await pubsub.publish('MESSAGE_REMOVED', { messageRemoved: message, channel: channel });
+
     return message;
   } catch (err) {
     throw err;
