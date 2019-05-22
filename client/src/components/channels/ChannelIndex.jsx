@@ -17,7 +17,7 @@ class ChannelIndex extends React.Component {
 
           return (
             <div className="channel-list">
-              <h3>All Channels</h3>
+              <h3>Channels</h3>
               {!data.channels || !data.channels.length ? (
                 <p>No channel available</p>
               ) : (

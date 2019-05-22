@@ -1,8 +1,36 @@
 .channel-list {
-  color: grey;
-  background: rebeccapurple;
+  color: white;
+  margin-top: 50px;
 }
 
-.channel-list > div > div > h3 > a {
-  color: grey
+.channel-header {
+  font-size: 16px;
+  margin-left: 10px;
+  font-weight: lighter;
+}
+
+.channel-link {
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  margin-left: 25px;
+  width: 100%;
+  font-weight: lighter;
+}
+
+.channel-link:hover {
+  
+}
+
+.channel-name {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.channel-name:hover {
+  background: black;
+  opacity: .2;
+  z-index: 1;
+  width: 100%;
 }

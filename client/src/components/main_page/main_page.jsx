@@ -1,3 +1,5 @@
+import './main_page.css';
+
 import React from "react";
 import { ApolloConsumer, Query } from "react-apollo";
 import Nav from '../Nav';
@@ -22,7 +24,7 @@ class MainPage extends React.Component {
                     <Query query={CURRENT_USER}>
                       {({ data }) => {
                         const currentUserId = data.currentUserId;
-                        return <div>
+                        return <div className="right-panel">
                           <Nav currentUserId={currentUserId}/>
                           <UserChannelIndex currentUserId={currentUserId}/>
                           <DirectMessageIndex currentUserId={currentUserId}/>
