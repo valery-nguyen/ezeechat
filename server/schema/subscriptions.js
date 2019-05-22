@@ -4,6 +4,8 @@ const { withFilter } = require('apollo-server');
 const mongoose = require("mongoose");
 const MessageType = require('./types/message_type');
 const Message = mongoose.model("messages");
+const DirectMessageType = require("./types/direct_message_type");
+const DirectMessage = mongoose.model("DirectMessage");
 const pubsub = require('./pubsub');
 
 const messageSent = {
@@ -32,9 +34,23 @@ const messageRemoved = {
   )
 };
 
+const directMessageSent = {
+  type: DirectMessageType,
+  resolve(data) {
+    return data.directMessageSent;
+  },
+  subscribe: withFilter(
+    () => pubsub.asyncIterator(["DIRECT_MESSAGE_SENT"]),
+    (payload, variables) => {
+      return true;
+    }
+  )
+};
+
+
 const subscription = new GraphQLObjectType({
   name: "Subscription",
-  fields: () => ({ messageSent, messageRemoved })
+  fields: () => ({ messageSent, messageRemoved, directMessageSent })
 });
 
 module.exports = subscription;
