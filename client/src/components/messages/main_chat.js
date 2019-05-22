@@ -57,19 +57,16 @@ class MainChat extends React.Component {
                           mutation={DELETE_MESSAGE}
                           onError={err => this.setState({ message: err.message })}
                           refetchQueries={() => {
-                            console.log("refetch");
                             return [{
                               query: FETCH_CHANNEL,
                               variables: { id: this.props.history.location.pathname.split("/").slice(-1)[0] }
                             }]
                           }}
                           onCompleted={data => {
-                            console.log(`message deleted`)
+                            console.log(`message ${data} deleted`);
                           }}
                         >
                           {(deleteMessage, { data }) => {
-                            console.log(data);
-                            console.log("inside the function");
                             if (!data || data.deleteMessage._id !== message._id) {
                               return <li key={idx}>
                                 <div>
