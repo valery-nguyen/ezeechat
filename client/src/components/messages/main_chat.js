@@ -1,10 +1,9 @@
 import React from 'react';
-import { Query, Subscription, subscribeToMore } from "react-apollo";
-import { Mutation } from "react-apollo";
+import { Query, Subscription, subscribeToMore, Mutation } from "react-apollo";
 import Queries from "../../graphql/queries";
+import Mutations from "../../graphql/mutations";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
-import Mutations from "../../graphql/mutations";
 const { FETCH_CHANNEL, FETCH_MESSAGES } = Queries;
 const { DELETE_MESSAGE } = Mutations;
 const { NEW_MESSAGE_SUBSCRIPTION, REMOVED_MESSAGE_SUBSCRIPTION } = Subscriptions;

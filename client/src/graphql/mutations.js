@@ -85,12 +85,11 @@ export default {
     mutation DeleteMessage($id: ID!) {
       deleteMessage(_id: $id) {
         _id
-        body
       }
     }
   `,
   UPDATE_MESSAGE: gql`
-    mutation UpdateMessage($id: String!, $body: String!) {
+    mutation UpdateMessage($id: ID!, $body: String!) {
       updateMessage(id: $id, body: $body) {
         _id
         body

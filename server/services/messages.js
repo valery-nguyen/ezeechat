@@ -49,14 +49,15 @@ const deleteMessage = async (data, context) => {
 
     const decoded = await jwt.verify(token, key);
     const { id } = decoded;
-    const loggedIn = await User.findById(id);
-    if (!loggedIn) {
-      throw new Error("A logged in user is required");
-    }
 
     // update channel / delete message
     const { _id } = data;
     let message = await Message.findById(_id);
+
+    if (message.user_id != id) {
+      throw new Error("Cannot delete messages that are not your own");
+    }
+    
     let channel = await Channel.findById(message.channel);
     let messages = channel.messages;
 
@@ -65,7 +66,6 @@ const deleteMessage = async (data, context) => {
     channel.messages = messages;
     await channel.save();
     await message.remove();
-
     await pubsub.publish('MESSAGE_REMOVED', { messageRemoved: message, channel: channel });
 
     return message;
