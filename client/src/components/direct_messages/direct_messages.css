@@ -1,8 +1,31 @@
 .direct-messages-list {
-  color: grey;
-  background: rebeccapurple;
+  color: white;
+  margin-top: 50px;
 }
 
-.channel-list > div > div > h3 > a {
-  color: grey
+.direct-message-header {
+  font-size: 16px;
+  margin-left: 10px;
+  font-weight: lighter;
+}
+
+.direct-message-link {
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  margin-left: 25px;
+  width: 100%;
+}
+
+.direct-message-name {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.direct-message-name:hover {
+  background: black;
+  opacity: .2;
+  z-index: 1;
+  width: 100%;
 }

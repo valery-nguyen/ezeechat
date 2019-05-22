@@ -1,18 +1,41 @@
 .send-message-form-div {
     position: fixed;
     bottom: 0;
-    left: 347px;
+    left: 240px;
     right: 0;
     background: rgba(0, 0, 0, 0.5);
     color: white;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 7px;
+    border-width: 2px;
 }
 
 .main-chat-window {
     width: 70%;
     margin-top: 40px;
+    margin-left: 200px;
 }
 
 .send-message-form {
     display: flex;
     justify-content: space-between;
+    border-radius: 7px;
+    border-width: 2px;
 } 
+
+.message-input {
+    width: 100%;
+    padding: 14px;
+    padding-left: 20px;
+    border-radius: 7px;
+    border: 2px solid darkgrey;
+}
+
+.send-message-button {
+    display: none;
+}
+
+.message-list {
+    list-style: none;
+}

@@ -51,7 +51,7 @@ class MainChat extends React.Component {
                   }
 
                   return <div className="main-chat-window">
-                    <ul>
+                    <ul className="message-list">
                       {allMessages.map((message, idx) => (
                         <li key={idx}>
                           <p>{message.date}</p>
