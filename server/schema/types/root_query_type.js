@@ -9,6 +9,7 @@ const MessageType = require('./message_type');
 const Message = mongoose.model("messages");
 const DirectMessageType = require('./direct_message_type');
 const DirectMessage = mongoose.model("DirectMessage");
+const DirectMessageService = require('./../../services/directmessages');
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
@@ -63,6 +64,12 @@ const RootQueryType = new GraphQLObjectType({
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
         return DirectMessage.findById(args._id);
+      },
+    },
+    fetchUserMessages: {
+      type: new GraphQLList(DirectMessageType),
+      resolve(_, args, context) {
+        return DirectMessageService.fetchUserMessages(context);
       }
     }
   })
