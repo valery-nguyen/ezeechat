@@ -70,5 +70,27 @@ export default {
         channel
       }
     }
+  `,
+  FETCH_USER_MESSAGES: gql`
+    query fetchUserMessages {
+      fetchUserMessages {
+        _id
+      }
+  }
+  `,
+  FETCH_DIRECT_MESSAGES: gql`
+    query getDirectMessages($id: ID!) {
+      directmessage(_id: $id) {
+        _id
+        users {
+          _id
+          email
+        }
+        messages {
+          date
+          body
+        }
+      }
+    }
   `
 };

@@ -16,6 +16,7 @@ const App = () => {
       <Switch>
         <Route exact path="/channels/create" component={CreateChannel} />
         <Route path="/channels/:channelId" component={MainChat} />
+        <Route path="/dms/:dmID" component={MainChat} />
         <Route exact path="/channels/" component={ChannelIndex} />
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/signup" component={Signup} routeType="auth" />

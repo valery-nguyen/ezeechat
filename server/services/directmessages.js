@@ -43,7 +43,9 @@ const createDirectMessage = async (data, context) => {
 
     // add direct message
     const { users } = data;
-
+    console.log(users);
+    users.push(id)
+    console.log(users);
     let dm = new DirectMessage({
       users: users
     });
@@ -56,4 +58,31 @@ const createDirectMessage = async (data, context) => {
   }
 };
 
-module.exports = { addMessageToDM, createDirectMessage };
+// gets the DM's for a user
+const fetchUserMessages = async (context) => {
+  // console.log(context);
+  try {
+    // check for loggedin user
+    const token = context.token;
+    const decoded = await jwt.verify(token, key);
+    const { id } = decoded;
+    const loggedIn = await User.findById(id);
+
+    if (!loggedIn) {
+      throw new Error("A logged in user is required");
+    }
+   
+    let messages = await DirectMessage.find({})
+      // .populate("users")
+      .then(dms => dms.filter((dm) => {
+        return dm.users.includes(id)
+      }    
+      ));  
+      // console.log(messages);
+      return messages;
+  } catch (err) {
+    throw err;
+  }
+}
+  
+module.exports = { addMessageToDM, createDirectMessage, fetchUserMessages };

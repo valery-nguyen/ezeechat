@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 
+
 const DirectMessageType = new GraphQLObjectType({
   name: "DirectMessageType",
   fields: () => ({
@@ -17,7 +18,14 @@ const DirectMessageType = new GraphQLObjectType({
       resolve(parentValue) {
         return DirectMessage.getMessages(parentValue._id);
       }
-    }
+    },
+    // fetchUserMessages: {
+    //   type: new GraphQLList(GraphQLID),
+    //   resolve(parentValue) {
+    //     // return DirectMessageService.fetchUserMessages(context);
+    //     console.log("arsteianrst")
+    //   }
+    // }
   })
 });
 
