@@ -1,6 +1,7 @@
 import React from "react";
 import { ApolloConsumer, Query } from "react-apollo";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router';
 
 import Queries from "../graphql/queries";
 const { IS_LOGGED_IN } = Queries;
@@ -46,4 +47,4 @@ const Nav = props => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

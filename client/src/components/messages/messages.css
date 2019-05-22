@@ -1,0 +1,18 @@
+.send-message-form-div {
+    position: fixed;
+    bottom: 0;
+    left: 347px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.main-chat-window {
+    width: 70%;
+    margin-top: 40px;
+}
+
+.send-message-form {
+    display: flex;
+    justify-content: space-between;
+} 

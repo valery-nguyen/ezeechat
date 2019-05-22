@@ -1,0 +1,8 @@
+.channel-list {
+  color: grey;
+  background: rebeccapurple;
+}
+
+.channel-list > div > div > h3 > a {
+  color: grey
+}

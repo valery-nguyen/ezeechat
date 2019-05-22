@@ -46,15 +46,7 @@ class ChannelDetail extends React.Component {
           if (error) return <p>Error</p>;
           return (
             <div>        
-              <h3><Link to={`/channels/${data.channel._id}`}>channel id:{data.channel._id}</Link></h3>              
-              <h3>host id:{data.channel.host_id}</h3>
-              <h3>channel name:{data.channel.name}</h3>
-              <ul>channel users:{data.channel.users.map(user => (
-                <li key={user._id}>
-                  <p>user name:{user.name}</p>
-                  <p>user email:{user.email}</p>
-                </li>
-              ))}</ul>
+              <h3><Link to={`/channels/${data.channel._id}`}>channel name:{data.channel.name}</Link></h3>              
 
               <Mutation
                 mutation={ADD_CHANNEL_USER}

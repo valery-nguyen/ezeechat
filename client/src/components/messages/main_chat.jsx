@@ -1,3 +1,5 @@
+import './messages.css';
+
 import React from 'react';
 import { Query, Subscription, subscribeToMore, Mutation } from "react-apollo";
 import Queries from "../../graphql/queries";
@@ -10,8 +12,15 @@ const { NEW_MESSAGE_SUBSCRIPTION, REMOVED_MESSAGE_SUBSCRIPTION } = Subscriptions
 
 class MainChat extends React.Component {
   render() {
+    let channelId;
+    if (!this.props.history) {
+      channelId = "5ce2f5d2c902631a973f73e6";
+    } else {
+      channelId = this.props.history.location.pathname.split("/").slice(-1)[0];
+    }
+
     return (
-      <Query query={FETCH_CHANNEL} variables={{ id: this.props.history.location.pathname.split("/").slice(-1)[0]}}>
+      <Query query={FETCH_CHANNEL} variables={{ id: channelId }}>
         {({ subscribeToMore, loading, error, data, refetch }) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
@@ -41,7 +50,7 @@ class MainChat extends React.Component {
                     allMessagesIds.splice(removedMessageIdx, 1);
                   }
 
-                  return <div>
+                  return <div className="main-chat-window">
                     <ul>
                       {allMessages.map((message, idx) => (
                         <li key={idx}>
