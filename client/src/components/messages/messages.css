@@ -1,5 +1,5 @@
 
-.send-message-form {
+.send-message-form-div {
     position: fixed;
     bottom: 0;
     left: 347px;
@@ -11,4 +11,9 @@
 .main-chat-window {
     width: 70%;
     margin-top: 40px;
+}
+
+.send-message-form {
+    display: flex;
+    justify-content: space-between;
 }

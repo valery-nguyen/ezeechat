@@ -62,8 +62,8 @@ class CreateMessage extends Component {
         }}
       >
         {(newMessage, { data }) => (
-          <div className="send-message-form">
-            <form onSubmit={e => this.handleSubmit(e, newMessage)}>
+          <div className="send-message-form-div">
+            <form className="send-message-form" onSubmit={e => this.handleSubmit(e, newMessage)}>
               <textarea
                 onChange={this.update("body")}
                 value={this.state.body}
