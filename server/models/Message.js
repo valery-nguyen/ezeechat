@@ -10,6 +10,10 @@ const MessageSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Channel"
   },
+  directMessage: {
+    type: Schema.Types.ObjectId,
+    ref: "DirectMessage"
+  },
   date: {
     type: Date,
     default: Date.now

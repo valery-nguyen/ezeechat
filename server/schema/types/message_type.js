@@ -10,6 +10,7 @@ const MessageType = new GraphQLObjectType({
     _id: { type: GraphQLID },
     user_id: { type: GraphQLID },
     channel: { type: GraphQLID },
+    directMessage: { type: GraphQLID },
     body: { type: GraphQLString },
     date: { type: GraphQLDateTime }
   })

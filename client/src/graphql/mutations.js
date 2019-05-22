@@ -101,7 +101,22 @@ export default {
     mutation CreateDirectMessage($id: [ID!]) {
       createDirectMessage(id: $id) {
         _id
-      } 
+      }
+    }
+  `,
+  NEW_DIRECT_MESSAGE: gql`
+    mutation AddMessageToDM($_id: ID!, $body: String!) {
+      addMessageToDM(_id: $_id, body: $body) {
+        _id
+        users {
+          _id
+          email
+        }
+        messages {
+          date
+          body
+        }
+      }
     }
   `
 };
