@@ -41,12 +41,19 @@ class CreateMessage extends Component {
 
   handleSubmit(e, newMessage) {
     e.preventDefault();
+    e.stopPropagation();
     newMessage({
       variables: {
         body: this.state.body,
         user_id: "",
         channel: this.props.history.location.pathname.split("/").slice(-1)[0]
       }
+    });
+
+    this.setState({
+      body: "",
+      message: "",
+      channel: ""
     });
   }
 
