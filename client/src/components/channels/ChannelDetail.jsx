@@ -51,7 +51,7 @@ class ChannelDetail extends React.Component {
               <Mutation
                 mutation={ADD_CHANNEL_USER}
                 onError={err => this.setState({ message: err.message })}
-                update={(cache, data) => this.updateCache(cache, data)}
+                // update={(cache, data) => this.updateCache(cache, data)}
                 onCompleted={data => {
                   const { name } = data.addChannelUser;
                   this.setState({
@@ -72,7 +72,7 @@ class ChannelDetail extends React.Component {
               <Mutation
                 mutation={REMOVE_CHANNEL_USER}
                 onError={err => this.setState({ message: err.message })}
-                update={(cache, data) => this.updateCache(cache, data)}
+                // update={(cache, data) => this.updateCache(cache, data)}
                 onCompleted={data => {
                   const { name } = data.removeChannelUser;
                   this.setState({
