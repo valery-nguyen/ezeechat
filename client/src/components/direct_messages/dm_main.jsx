@@ -16,7 +16,8 @@ class DMChat extends React.Component {
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
           let allMessages = [].concat(data.directmessage.messages);
-          
+          let newData = data;
+          let messageAuthor;
           return (
             <Subscription
               subscription={NEW_DIRECT_MESSAGE_SUBSCRIPTION}
@@ -24,14 +25,22 @@ class DMChat extends React.Component {
               {({ data, loading }) => {
                 return (
                   <div className="main-chat-window">
-                    <p></p>
                     <ul>
-                      {allMessages.map((message, idx) => (
-                        <li key={idx}>
-                          <p>{message.date}</p>
-                          <p>{message.body}</p>
-                        </li>
-                      ))}
+                      {allMessages.map((message, idx) => {
+                        messageAuthor = newData.directmessage.users.filter((user) => (user._id === message.user_id))[0].name;
+                        return <li className="message-element" key={idx}>
+                        <div className="message-object">
+                        <img className="message-pic" src={require('./pika.jpg')} alt="pika"/>
+                          <div className="message-box">
+                            <div className="message-info">
+                                <p className="message-author">{messageAuthor}</p>
+                              <p className="message-date">{message.date}</p>
+                            </div>
+                            <p className="message-body">{message.body}</p>
+                          </div>
+                        </div>
+                      </li>
+                      })}
                     </ul>
                     <CreateDirectMessage />
                   </div>
