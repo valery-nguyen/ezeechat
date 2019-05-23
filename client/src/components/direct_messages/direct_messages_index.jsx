@@ -4,6 +4,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import DirectMessageDetail from './direct_message_detail';
 import Queries from "../../graphql/queries";
+import { Link } from 'react-router-dom';
 
 const { FETCH_USER_MESSAGES } = Queries;
 
@@ -17,6 +18,7 @@ class DirectMessageIndex extends React.Component {
           return (
             <div className="direct-messages-list">
               <h3 className="direct-message-header">Direct Messages</h3>
+              <h5 className="direct-message-header"><Link to={'/dms/new'}>New Direct Message</Link></h5>
               {!data.fetchUserMessages || !data.fetchUserMessages.length ? (
                 <p className="direct-message-link">No Direct Messages</p>
               ) : (

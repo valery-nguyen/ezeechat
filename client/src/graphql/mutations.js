@@ -101,11 +101,6 @@ export default {
     mutation CreateDirectMessage($id: ID!) {
       createDirectMessage(id: $id) {
         _id
-        users {
-          _id
-          name
-          email
-        }
       }
     }
   `,
