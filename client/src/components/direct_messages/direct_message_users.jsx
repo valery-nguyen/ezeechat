@@ -31,35 +31,47 @@ class DirectMessageUsers extends React.Component {
         if (error) return <p>Error</p>;
         const fetchUsersData = data;
         return (
-          <Mutation
-            mutation={CREATE_DIRECT_MESSAGE}
-            onError={err => console.log(err.message)}
-            refetchQueries={() => [{ query: FETCH_USER_MESSAGES }]}
-          >
-            {(createDirectMessage, { data }) => {
-              const createDMData = data;
-              return <div className="dm-users">
-                <p>Users</p>
-                {(!fetchUsersData.users || !fetchUsersData.users.length) ? (
-                <p>Users</p>
-              ) : (
-                  <div>
-                    <ul>
-                    {fetchUsersData.users.map(user => {
-                      return (
-                      <li key={user._id}>
-                        <p>{user.email}</p>
-                          <button onClick={(e) => {e.preventDefault(); return this.handleClick(createDirectMessage, user._id)}}>Send Direct Message</button>
-                      </li>
-                      );
-                    })}
-                    </ul>
-                  </div>
-                )}
-            </div>
+          <Query query={FETCH_USER_MESSAGES} >
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error</p>;
+              const messageData = data;
+              const badUsers = messageData.fetchUserMessages.map((dm) => dm.users[1]._id)
+              return (
+                <Mutation
+                  mutation={CREATE_DIRECT_MESSAGE}
+                  onError={err => console.log(err.message)}
+                  refetchQueries={() => [{ query: FETCH_USER_MESSAGES }]}
+                >
+                  {(createDirectMessage, { data }) => {
+                    const createDMData = data;
+                    
+                    return <div className="dm-users">
+                      <p>Users</p>
+                      {(!fetchUsersData.users || !fetchUsersData.users.length) ? (
+                        <p>Users</p>
+                      ) : (
+                        badUsers.length === fetchUsersData.users.length ? (<p>Already messaging with everyone!</p>) : (
+                          <div>
+                            <ul>
+                              {fetchUsersData.users.map(user => {
+                                return (
+                                  !badUsers.includes(user._id) ? (<li key={user._id}>
+                                    <p>{user.email}</p>
+                                    <button onClick={(e) => { e.preventDefault(); return this.handleClick(createDirectMessage, user._id) }}>Send Direct Message</button>
+                                  </li>) : (null)
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        ))}
+                    </div>
+                  }}
+                </Mutation>
+              );
             }}
-          </Mutation>            
-        );
+          </Query>
+        )
       }}
     </Query>
     )
