@@ -97,6 +97,7 @@ export default {
           name
         }
         messages {
+          user_id
           date
           body
         }

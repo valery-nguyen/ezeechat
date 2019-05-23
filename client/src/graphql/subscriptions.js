@@ -31,10 +31,12 @@ export default {
         users {
           _id
           email
+          name
         }
         messages {
           date
           body
+          user_id
         }
       }
     }

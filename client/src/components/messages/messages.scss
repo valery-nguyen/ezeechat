@@ -31,6 +31,7 @@
 	padding-left: 20px;
 	border-radius: 7px;
 	border: 2px solid darkgrey;
+	background: white;
 }
 
 .send-message-button {
@@ -81,17 +82,21 @@ hr {
 .message-element {
 	display: flex;
 	justify-content: flex-start;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	// margin-left: -20px;
+	width: 100%;
 }
 
 .message-element:hover {
-	background-color: black;
-	opacity: .1;
-	width: 100%
+	background-color: #F5F5F5;
+	width: 100%;
 }
 
 .message-object {
 	display: flex;
+	margin-left: 20px;
 }
 
 .message-pic {
