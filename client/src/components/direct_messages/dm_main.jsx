@@ -25,7 +25,7 @@ class DMChat extends React.Component {
               {({ data, loading }) => {
                 return (
                   <div className="main-chat-window">
-                    <ul>
+                    <ul className="message-list">
                       {allMessages.map((message, idx) => {
                         messageAuthor = newData.directmessage.users.filter((user) => (user._id === message.user_id))[0].name;
                         return <li className="message-element" key={idx}>
