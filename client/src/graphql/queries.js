@@ -17,6 +17,8 @@ export default {
         _id
         host_id
         name
+        host_name
+        created_at
         users {
           _id
           name
@@ -31,6 +33,8 @@ export default {
         _id
         host_id
         name
+        host_name
+        created_at
         users {
           _id
           name
@@ -65,6 +69,7 @@ export default {
       messages {
         _id
         user_id
+        author
         body
         date
         channel

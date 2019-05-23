@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = mongoose.model("users");
 
 const MessageSchema = new Schema({
   user_id: {
@@ -24,12 +25,8 @@ const MessageSchema = new Schema({
   }
 });
 
-MessageSchema.statics.findUser = function(messageId) {
-  return this.findById(messageId)
-    .populate("users")
-    .then(message => {
-      return message.users;
-    });
+MessageSchema.statics.findAuthor = function(messageId) {
+  return this.findById(messageId).then(message => User.findById(message.user_id).then(user => user.name));
 };
 
 module.exports = mongoose.model("messages", MessageSchema);
