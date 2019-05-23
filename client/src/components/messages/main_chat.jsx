@@ -53,12 +53,19 @@ class MainChat extends React.Component {
                   return <div className="main-chat-window">
                     <ul className="message-list">
                       {allMessages.map((message, idx) => (
-                        <li key={idx}>
-                          <p>{message.author}</p>
-                          <p>{message.date}</p>
-                          <p>{message.body}</p>
+                        <li className="message-element" key={idx}>
+                          <div className="message-object">
+                          <img className="message-pic" src={require('./pika.jpg')} alt="pika"/>
+                            <div className="message-box">
+                              <div className="message-info">
+                                <p className="message-author">{message.author}</p>
+                                <p className="message-date">{message.date}</p>
+                              </div>
+                              <p className="message-body">{message.body}</p>
+                            </div>
+                          </div>
 
-                          <Mutation
+                          {/* <Mutation
                             mutation={DELETE_MESSAGE}
                             variables={{ id: message._id }}
                           >
@@ -70,8 +77,7 @@ class MainChat extends React.Component {
                                 </div>
                               }
                             }
-                          </Mutation>
-
+                          </Mutation> */}
                         </li>
                       ))}
                     </ul>

@@ -39,6 +39,7 @@
 
 .message-list {
 	list-style: none;
+	font-family: sans-serif;
 }
 
 hr {
@@ -59,4 +60,51 @@ hr {
 .channel-button-box {
 	display: flex;
 	align-items: center;
+}
+
+.message-info {
+	display: flex;
+	align-items: center;
+}
+
+.message-author {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.message-date {
+	margin-left: 10px;
+	font-size: 12px;
+	color: grey;
+}
+
+.message-element {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 10px;
+}
+
+.message-element:hover {
+	background-color: black;
+	opacity: .1;
+	width: 100%
+}
+
+.message-object {
+	display: flex;
+}
+
+.message-pic {
+	height: 37px;
+	width: 37px;
+	border-radius: 5px;
+}
+
+.message-box {
+	margin-left: 10px;
+	padding-top: 1px;
+}
+
+.message-body {
+	font-size: 14px;
 }

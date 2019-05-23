@@ -9,6 +9,7 @@ export default {
         body
         date
         channel
+        author
       }
     }
   `,
