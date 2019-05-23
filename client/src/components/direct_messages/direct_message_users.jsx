@@ -46,26 +46,50 @@ class DirectMessageUsers extends React.Component {
                   {(createDirectMessage, { data }) => {
                     const createDMData = data;
                     
-                    return <div className="dm-users">
-                      <p>Users</p>
+                    return (
+                    <div className="whole-index">
+                      
                       {(!fetchUsersData.users || !fetchUsersData.users.length) ? (
-                        <p>Users</p>
+                        null
                       ) : (
                         badUsers.length === fetchUsersData.users.length ? (<p>Already messaging with everyone!</p>) : (
-                          <div>
+                          <div className="channel-index">
+                                <div className="channel-browse-header">
+                                  <h3 className="channel-index-header">Users</h3>
+                                </div>
+                                <div>
+                                  <form className="channel-search">
+                                    <input
+                                      placeholder="Search users (isn't working right now!)"
+                                      className="channel-search-input"
+                                    />
+                                  </form>
+                                </div>
                             <ul>
                               {fetchUsersData.users.map(user => {
                                 return (
-                                  !badUsers.includes(user._id) ? (<li key={user._id}>
-                                    <p>{user.email}</p>
-                                    <button onClick={(e) => { e.preventDefault(); return this.handleClick(createDirectMessage, user._id) }}>Send Direct Message</button>
-                                  </li>) : (null)
+                                  !badUsers.includes(user._id) ? (<div className="channels-box">
+                                                                    <li key={user._id} className="dm-detail">
+                                                                      <div className="channel-info-box">
+                                                                        <h3 className="channel-index-name">{user.name}</h3>
+                                                                        <h3 className="dm-info">{user.email}</h3>
+                                                                      </div>
+                                                                      <div><button className="dm-button" onClick={(e) => { e.preventDefault(); return this.handleClick(createDirectMessage, user._id) }}>Send Message</button></div>
+                                                                    </li><hr/>
+                                                                  </div>) : (null)
                                 );
                               })}
                             </ul>
                           </div>
                         ))}
+                        <div className="exit-div">
+                          <div className="exit-box">
+                            <a className="channel-index-exit" href={`/#/mainchat/`}>&#215;</a><br />
+                            <p className="esc" >esc</p>
+                          </div>
+                        </div>  
                     </div>
+                    )
                   }}
                 </Mutation>
               );
