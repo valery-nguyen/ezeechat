@@ -4,6 +4,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import ChannelDetail from './ChannelDetail';
 import Queries from "../../graphql/queries";
+import { Link } from 'react-router-dom';
 
 const { FETCH_USER_CHANNELS } = Queries;
 
@@ -15,8 +16,10 @@ class UserChannelIndex extends React.Component {
           return (
             <div className="channel-list">
               <h3 className="channel-header">Channels</h3>
+              
               {!data.userChannels || !data.userChannels.length ? (
-                <p className="direct-message-link">No channel available</p>
+                <p className="direct-message-link">No Channels Available</p>
+                
               ) : (
                   <div>
                     {data.userChannels.map(channel => {
@@ -25,6 +28,7 @@ class UserChannelIndex extends React.Component {
                     
                   </div>
                 )}
+                <Link className="channel-link" to="/channels/">+ Add a channel</Link>
             </div>
           );
         }}

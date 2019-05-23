@@ -16,7 +16,9 @@ class ChannelIndex extends React.Component {
           if (error) return <p>Error</p>;
 
           return (
+            
             <div className="channel-list">
+              <div>HEY THIS IS THE CHANNELS INDEX</div>
               <h3>Channels</h3>
               {!data.channels || !data.channels.length ? (
                 <p className="direct-message-link" >No channel available</p>
