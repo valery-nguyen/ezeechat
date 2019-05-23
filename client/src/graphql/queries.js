@@ -92,5 +92,14 @@ export default {
         }
       }
     }
+  `,
+  FETCH_USERS: gql`
+    query fetchUsers {
+      users {
+        _id
+        email
+        name
+      }
+    }
   `
 };
