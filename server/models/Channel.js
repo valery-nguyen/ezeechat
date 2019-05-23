@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = mongoose.model("users");
 
 const ChannelSchema = new Schema({
   host_id: {
@@ -25,6 +26,10 @@ const ChannelSchema = new Schema({
     default: Date.now
   }
 });
+
+ChannelSchema.statics.findHostName = function (channelId) {
+  return this.findById(channelId).then(channel => User.findById(channel.host_id).then(user => user.name));
+};
 
 ChannelSchema.statics.findUsers = function (channelId) {
   return this.findById(channelId)
