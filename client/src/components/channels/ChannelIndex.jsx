@@ -19,7 +19,7 @@ class ChannelIndex extends React.Component {
             <div className="channel-list">
               <h3>Channels</h3>
               {!data.channels || !data.channels.length ? (
-                <p>No channel available</p>
+                <p className="direct-message-link" >No channel available</p>
               ) : (
                   <div>
                     {data.channels.map(channel => {

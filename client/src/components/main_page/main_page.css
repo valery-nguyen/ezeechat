@@ -1,5 +1,7 @@
 
 .right-panel {
+  display: flex;
+  flex-direction: column;
   height: 100vw;
   width: 220px;
   background: #3f0e40;;
@@ -9,4 +11,5 @@
   color: white;
   font-variant-ligatures: common-ligatures;
   font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif;
+  
 }

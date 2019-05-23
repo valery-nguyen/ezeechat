@@ -16,12 +16,13 @@ class UserChannelIndex extends React.Component {
             <div className="channel-list">
               <h3 className="channel-header">Channels</h3>
               {!data.userChannels || !data.userChannels.length ? (
-                <p>No channel available</p>
+                <p className="direct-message-link">No channel available</p>
               ) : (
                   <div>
                     {data.userChannels.map(channel => {
                       return <ChannelDetail key={channel._id} id={channel._id} />;
                     })}
+                    
                   </div>
                 )}
             </div>
