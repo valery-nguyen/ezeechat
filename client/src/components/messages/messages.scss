@@ -1,45 +1,62 @@
 .send-message-form-div {
-    position: fixed;
-    bottom: 0;
-    left: 240px;
-    right: 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    border-radius: 7px;
-    border-width: 2px;
+	position: fixed;
+	bottom: 0;
+	left: 240px;
+	right: 0;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	border-radius: 7px;
+	border-width: 2px;
 }
 
 .main-chat-window {
-    width: calc(100vw - 240px);
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 0;
-    margin-top: 50px;
-    // margin-left: 200px;
+	width: calc(100vw - 240px);
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 0;
+	margin-top: 50px;
 }
 
 .send-message-form {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 7px;
-    border-width: 2px;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 7px;
+	border-width: 2px;
 } 
 
 .message-input {
-    width: 100%;
-    padding: 14px;
-    padding-left: 20px;
-    border-radius: 7px;
-    border: 2px solid darkgrey;
+	width: 100%;
+	padding: 14px;
+	padding-left: 20px;
+	border-radius: 7px;
+	border: 2px solid darkgrey;
 }
 
 .send-message-button {
-    display: none;
+	display: none;
 }
 
 .message-list {
-    list-style: none;
+	list-style: none;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+.channel-detail-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.channel-button-box {
+	display: flex;
+	align-items: center;
 }
