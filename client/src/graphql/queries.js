@@ -80,6 +80,9 @@ export default {
     query fetchUserMessages {
       fetchUserMessages {
         _id
+        users {
+          _id
+        }
       }
   }
   `,

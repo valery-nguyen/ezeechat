@@ -15,6 +15,8 @@ class DirectMessageIndex extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
+
+          
           return (
             <div className="direct-messages-list">
               <h3 className="direct-message-header">Direct Messages</h3>
@@ -30,6 +32,7 @@ class DirectMessageIndex extends React.Component {
                 )}
             </div>
           );
+
         }}
       </Query>
     )
