@@ -14,6 +14,10 @@ class DMChat extends React.Component {
         {({ loading, error, data}) => {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
+<<<<<<< HEAD
+=======
+          if (!data) return null;
+>>>>>>> f7a2ecb53a105ef996de67db87d937f83d715986
           let allMessages;
           if (!data.directmessage) {
             allMessages = [];

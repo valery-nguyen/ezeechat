@@ -66,9 +66,9 @@ class DirectMessageUsers extends React.Component {
                                   </form>
                                 </div>
                             <ul>
-                              {fetchUsersData.users.map(user => {
+                              {fetchUsersData.users.map((user) => {
                                 return (
-                                  !badUsers.includes(user._id) ? (<div className="channels-box">
+                                  !badUsers.includes(user._id) ? (<div className="channels-box" key={user._id}>
                                                                     <li key={user._id} className="dm-detail">
                                                                       <div className="channel-info-box">
                                                                         <h3 className="channel-index-name">{user.name}</h3>
