@@ -21,6 +21,7 @@ export default {
         body
         date
         channel
+        author
       }
     }
   `,
@@ -37,6 +38,7 @@ export default {
           date
           body
           user_id
+          author
         }
       }
     }

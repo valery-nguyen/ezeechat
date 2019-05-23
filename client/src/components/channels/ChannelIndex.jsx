@@ -49,7 +49,7 @@ class ChannelIndex extends React.Component {
               </div>
               <div className="exit-div">
                 <div className="exit-box">
-                  <a className="channel-index-exit" href={`/#/mainchat/`}>&#215;</a>
+                  <a className="channel-index-exit" href={`/#/mainchat/`}>&#215;</a><br/>
                   <p className="esc" >esc</p>
                 </div>
               </div>  

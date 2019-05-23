@@ -16,7 +16,7 @@ class UserChannelIndex extends React.Component {
         {({ data }) => {
           return (
             <div className="channel-list">
-              {/* <Link to='/channels'><h3 className="channel-header">Channels</h3></Link> */}
+              <h3 className="channel-header"><Link to='/channels'>Channels</Link></h3>
               {!data.userChannels || !data.userChannels.length ? (
                 null
               ) : (
@@ -24,10 +24,9 @@ class UserChannelIndex extends React.Component {
                     {data.userChannels.map(channel => {
                       return <ChannelNavDetail key={channel._id} id={channel._id} />;
                     })}
-                    
                   </div>
                 )}
-                <Link className="channel-link" to="/channels/">+ Add a channel</Link>
+              <h3 className="channel-name-container"><Link id="add-a-channel" className="channel-link" to="/channels/">+ Add a channel</Link></h3>
             </div>
           );
         }}

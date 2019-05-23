@@ -27,8 +27,8 @@ class MainPage extends React.Component {
                     <Query query={CURRENT_USER}>
                       {({ data }) => {
                         const currentUserId = data.currentUserId;
-                        return <div>
-                          <MainNav currentUserId={currentUserId} />
+                        return <div className="main-page-container">
+                          <MainNav className="main-page-nav" currentUserId={currentUserId} />
                           <Switch>
                             <AuthRoute exact path="/channels/create" component={CreateChannel} routeType="protected" currentUserId={currentUserId}/>
                             <AuthRoute exact exact path="/channels/:channelId" component={MainChat} routeType="protected" currentUserId={currentUserId}/>
