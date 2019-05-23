@@ -15,6 +15,7 @@ class DMChat extends React.Component {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
+          // console.log(data)
           let allMessages = [].concat(data.directmessage.messages);
           
           return (
@@ -24,6 +25,7 @@ class DMChat extends React.Component {
               {({ data, loading }) => {
                 return (
                   <div className="main-chat-window">
+                    <p></p>
                     <ul>
                       {allMessages.map((message, idx) => (
                         <li key={idx}>

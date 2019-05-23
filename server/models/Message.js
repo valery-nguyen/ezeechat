@@ -24,4 +24,13 @@ const MessageSchema = new Schema({
   }
 });
 
+MessageSchema.statics.findUser = function(messageId) {
+  return this.findById(messageId)
+    .populate("users")
+    .then(message => {
+      console.log(message);
+      return message.users;
+    });
+};
+
 module.exports = mongoose.model("messages", MessageSchema);

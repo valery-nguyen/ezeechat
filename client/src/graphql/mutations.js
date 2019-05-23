@@ -98,7 +98,7 @@ export default {
     }
   `,
   CREATE_DIRECT_MESSAGE: gql`
-    mutation CreateDirectMessage($id: [ID!]) {
+    mutation CreateDirectMessage($id: ID!) {
       createDirectMessage(id: $id) {
         _id
       }

@@ -22,7 +22,6 @@ class DirectMessageDetail extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
-          console.log(data);
           return (
             <div>        
               <h3 className="channel-name" ><Link className="channel-link" to={`/dms/${data.directmessage._id}`}>{`Direct Message: ${data.directmessage}`}</Link></h3>
