@@ -16,17 +16,43 @@ class ChannelIndex extends React.Component {
           if (error) return <p>Error</p>;
 
           return (
-            <div className="channel-index">
-              <h3>Channels</h3>
-              {!data.channels || !data.channels.length ? (
-                null
-              ) : (
-                  <div>
-                    {data.channels.map(channel => {
-                      return <ChannelDetail key={channel._id} id={channel._id} />;
-                    })}
-                  </div>
-                )}
+
+            <div className="whole-index">
+              
+
+              <div className="channel-index">
+                
+                <div className="channel-browse-header">
+                  <h3 className="channel-index-header">Browse channels</h3>
+                  <button className="create-channel-button">Create Channel</button>
+                </div>
+              
+                <div>
+                <form className="channel-search">
+                  <input
+                    placeholder="Search channels"
+                    className="channel-search-input"
+                  />
+                </form>
+                
+                </div>
+                  
+                {!data.channels || !data.channels.length ? (
+                  null
+                ) : (
+                    <div>
+                      {data.channels.map(channel => {
+                        return <ChannelDetail key={channel._id} id={channel._id} />;
+                      })}
+                    </div>
+                  )}
+              </div>
+              <div className="exit-div">
+                <div className="exit-box">
+                  <a className="channel-index-exit" href={`/mainchat/`}>&#215;</a>
+                  <p className="esc" >esc</p>
+                </div>
+              </div>  
             </div>
           );
         }}

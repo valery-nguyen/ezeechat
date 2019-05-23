@@ -37,6 +37,16 @@ class ChannelDetail extends React.Component {
     });
   }
 
+  buttonSwitch(addChannelUser, channelId) {
+    if (this.state.message.length > 0 ) {
+      return ( <a className="go-channel-button" href={`/channels/${channelId}`}>Go to Channel</a> )
+    } else {
+      return ( <form onSubmit={e => this.joinChannel(e, addChannelUser, channelId)}>
+        <button className="join-channel-button" type="submit">Join Channel</button>
+      </form> )
+    }
+  }
+
   render() {
     return (
       <Query query={FETCH_CHANNEL} variables={{ id: this.props.id }}>
@@ -44,28 +54,37 @@ class ChannelDetail extends React.Component {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
           const fetchChannelData = data;
+          // debugger;
           return (
-            <div>
-              <h3 className="channel-index-name"><a className="channel-index-link" href={`/channels/${fetchChannelData.channel._id}`}># {data.channel.name}</a></h3>              
-              <Mutation
-                mutation={ADD_CHANNEL_USER}
-                onError={err => this.setState({ message: err.message })}
-                onCompleted={data => {
-                  const { name } = data.addChannelUser;
-                  this.setState({
-                    message: `You successfully join channel ${name}`
-                  });
-                }}
-              >
-                {(addChannelUser, { data }) => (
-                  <div>
-                    <form onSubmit={e => this.joinChannel(e, addChannelUser, fetchChannelData.channel._id)}>
-                      <button type="submit">Join Channel</button>
-                    </form>
-                    {(this.state.message.length > 0) ? <div><p>{this.state.message}</p> <a href={`/channels/${fetchChannelData.channel._id}`}>Go to channel</a></div> : null}
-                  </div>
-                )}
-              </Mutation>
+            <div className="channels-box">
+              
+              <div className="channel-detail-box">
+                <div className="channel-info-box">
+                  <h3 className="channel-index-name"><a className="channel-index-link" href={`/channels/${fetchChannelData.channel._id}`}># {data.channel.name}</a></h3>    
+                  <h4 className="channel-info"> Created by {data.channel.host_id} on Date </h4>  
+                </div>  
+
+                <div className="channel-button-box">      
+                  <Mutation
+                    mutation={ADD_CHANNEL_USER}
+                    onError={err => this.setState({ message: err.message })}
+                    onCompleted={data => {
+                      const { name } = data.addChannelUser;
+                      this.setState({
+                        message: `You joined channel ${name}`
+                      });
+                    }}
+                  >
+                    {(addChannelUser, { data }) => (
+                      <div>
+                        {this.buttonSwitch(addChannelUser, fetchChannelData.channel._id)}
+                      </div>
+                      
+                    )}
+                  </Mutation>
+                </div> 
+              </div> 
+              < hr/>
             </div>
           );
         }}
