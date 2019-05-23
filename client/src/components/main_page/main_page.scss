@@ -1,12 +1,29 @@
 
-.right-panel {
+.left-panel {
+  h1 {
+    font-size: 20px;
+    font-weight: 540;
+    margin: 0 2px;
+    padding: 10px 0;
+  }
+
   height: auto;
-  min-height: 100vh;
+  min-height: 100%;
   width: 220px;
   background: #3f0e40;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   color: white;
   font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.main-page-container {
+  .main-page-nav {
+    height: 100%;
+  }
+
+  height: fit-content;
 }

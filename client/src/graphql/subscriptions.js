@@ -9,6 +9,7 @@ export default {
         body
         date
         channel
+        author
       }
     }
   `,
@@ -20,6 +21,7 @@ export default {
         body
         date
         channel
+        author
       }
     }
   `,
@@ -34,6 +36,7 @@ export default {
         messages {
           date
           body
+          author
         }
       }
     }

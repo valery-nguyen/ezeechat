@@ -17,24 +17,27 @@ const MainNav = props => {
             {({ data }) => {
               if (data.isLoggedIn) {
                 return <div className="nav">
-                  <div className="right-panel">
+                  <div className="left-panel">
+                    <h1>EzeeChat</h1>
                     <UserChannelIndex currentUserId={props.currentUserId} />
                     <DirectMessageIndex currentUserId={props.currentUserId} />
-                    <button
-                      onClick={e => {
-                        e.preventDefault();
-                        localStorage.removeItem("auth-token");
-                        client.writeData({
-                          data: {
-                            isLoggedIn: false,
-                            cart: []
-                          }
-                        });
-                        props.history.push("/");
-                      }}
-                    >
-                      Log out
+                    <div className="log-out-button-container">
+                      <button className="log-out-button"
+                        onClick={e => {
+                          e.preventDefault();
+                          localStorage.removeItem("auth-token");
+                          client.writeData({
+                            data: {
+                              isLoggedIn: false,
+                              cart: []
+                            }
+                          });
+                          props.history.push("/");
+                        }}
+                      >
+                        Log out
                     </button>
+                    </div>
                   </div>
                 </div>
               }
