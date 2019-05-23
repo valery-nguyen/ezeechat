@@ -24,7 +24,7 @@ class DirectMessageDetail extends React.Component {
           if (error) return <p>Error</p>;
           return (
             <div>        
-              <h3><Link to={`/dms/${data.directmessage._id}`}>{data.directmessage.users[1].email}</Link></h3>
+              <h3 className="channel-name" ><Link className="channel-link" to={`/dms/${data.directmessage._id}`}>{`Direct Message: ${data.directmessage}`}</Link></h3>
             </div>
           );
         }}

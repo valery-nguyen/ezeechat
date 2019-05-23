@@ -37,7 +37,7 @@ class CreateMessage extends Component {
         mutation={NEW_DIRECT_MESSAGE}
       >
         {(addMessageToDM, { data }) => (
-          <div className="send-message-form-container">
+          <div className="send-message-form-div">
             <form className="send-message-form" onSubmit={e => this.handleSubmit(e, addMessageToDM)}>
               <input
                 onChange={this.update("body")}
