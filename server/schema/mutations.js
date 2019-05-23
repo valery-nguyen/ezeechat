@@ -130,7 +130,7 @@ const mutation = new GraphQLObjectType({
     createDirectMessage: {
       type: DirectMessageType,
       args: {
-        users: { type: new GraphQLList(GraphQLID) }
+        id: { type: GraphQLID }
       },
       resolve(_, args, context) {
         return DirectMessageService.createDirectMessage(args, context);

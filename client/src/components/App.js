@@ -8,6 +8,7 @@ import CreateChannel from "./channels/CreateChannel";
 import MainChat from './messages/main_chat';
 import MainPage from './main_page/main_page';
 import DMChat from './direct_messages/dm_main';
+import DMUsers from './direct_messages/direct_message_users';
 import './app.css';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Switch>
         <Route exact path="/channels/create" component={CreateChannel} />
         <Route path="/channels/:channelId" component={MainChat} />
+        <Route exact path="/dms/new" component={DMUsers} />
         <Route path="/dms/:dmID" component={DMChat} />
         <Route exact path="/channels/" component={ChannelIndex} />
         <AuthRoute exact path="/login" component={Login} routeType="auth" />

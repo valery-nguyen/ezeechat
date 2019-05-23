@@ -56,12 +56,10 @@ const createDirectMessage = async (data, context) => {
     }
 
     // add direct message
-    const { users } = data;
+    const otheruser = data.id;
     console.log("creating DM");
-    users.push(id)
-    // console.log(users);
     let dm = new DirectMessage({
-      users: users
+      users: [id, otheruser]
     });
 
     dm.save();
