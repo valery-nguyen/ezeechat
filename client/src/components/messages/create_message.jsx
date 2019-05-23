@@ -1,4 +1,4 @@
-import './messages.css';
+import './messages.scss';
 
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
@@ -78,7 +78,6 @@ class CreateMessage extends Component {
                 placeholder="Send a message"
                 className="message-input"
               />
-              <button className="send-message-button" type="submit">Send Message</button>
             </form>
           </div>
         )}

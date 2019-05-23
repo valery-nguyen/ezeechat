@@ -1,4 +1,4 @@
-import './messages.css';
+import './messages.scss';
 
 import React from 'react';
 import { Query, Subscription, subscribeToMore, Mutation } from "react-apollo";

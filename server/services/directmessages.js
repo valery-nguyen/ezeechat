@@ -57,7 +57,6 @@ const createDirectMessage = async (data, context) => {
 
     // add direct message
     const otheruser = data.id;
-    console.log("creating DM");
     let dm = new DirectMessage({
       users: [id, otheruser]
     });
@@ -72,7 +71,6 @@ const createDirectMessage = async (data, context) => {
 
 // gets the DM's for a user
 const fetchUserMessages = async (context) => {
-  // console.log(context);
   try {
     // check for loggedin user
     const token = context.token;
@@ -85,12 +83,10 @@ const fetchUserMessages = async (context) => {
     }
    
     let messages = await DirectMessage.find({})
-      // .populate("users")
       .then(dms => dms.filter((dm) => {
-        return dm.users.includes(id)
+        return dm.users.includes(id);
       }    
       ));  
-      // console.log(messages);
       return messages;
   } catch (err) {
     throw err;

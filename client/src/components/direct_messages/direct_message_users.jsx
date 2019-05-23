@@ -1,4 +1,4 @@
-import './users.css';
+import './users.scss';
 import React from "react";
 import { Query, Mutation } from "react-apollo";
 import Queries from "../../graphql/queries";
@@ -20,8 +20,7 @@ class DirectMessageUsers extends React.Component {
       variables: {
         id: user_id
       } 
-    })
-      .then((data) => this.props.history.push(`/dms/${data.data.createDirectMessage._id}`));
+    }).then((data) => this.props.history.push(`/dms/${data.data.createDirectMessage._id}`));
   }
 
   render() {
@@ -31,7 +30,6 @@ class DirectMessageUsers extends React.Component {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error</p>;
         const fetchUsersData = data;
-        // console.log(data.users);
         return (
           <Mutation
             mutation={CREATE_DIRECT_MESSAGE}

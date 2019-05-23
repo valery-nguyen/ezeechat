@@ -28,7 +28,6 @@ MessageSchema.statics.findUser = function(messageId) {
   return this.findById(messageId)
     .populate("users")
     .then(message => {
-      console.log(message);
       return message.users;
     });
 };

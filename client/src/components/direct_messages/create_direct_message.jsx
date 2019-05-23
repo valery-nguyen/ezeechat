@@ -25,6 +25,10 @@ class CreateMessage extends Component {
         _id: this.props.history.location.pathname.split("/").slice(-1)[0]
       }
     });
+    
+    this.setState({
+      body: ""
+    });
   }
 
   render() {
@@ -38,10 +42,9 @@ class CreateMessage extends Component {
               <input
                 onChange={this.update("body")}
                 value={this.state.body}
-                placeholder="Message..."
+                placeholder="Send a message"
                 className="message-input"
               />
-              <button className="send-message-button" type="submit">Send Message</button>
             </form>
           </div>
         )}
