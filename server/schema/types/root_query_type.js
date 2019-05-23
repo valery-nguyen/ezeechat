@@ -57,7 +57,7 @@ const RootQueryType = new GraphQLObjectType({
     messages: {
       type: new GraphQLList(MessageType),
       resolve() {
-        return Message.find({});
+        return Message.find({}).populate("users");
       }
     },
     message: {

@@ -72,12 +72,13 @@ class CreateMessage extends Component {
         {(newMessage, { data }) => (
           <div className="send-message-form-div">
             <form className="send-message-form" onSubmit={e => this.handleSubmit(e, newMessage)}>
-              <textarea
+              <input
                 onChange={this.update("body")}
                 value={this.state.body}
-                placeholder="Message..."
+                placeholder="Send a message"
+                className="message-input"
               />
-              <button type="submit">Send Message</button>
+              <button className="send-message-button" type="submit">Send Message</button>
             </form>
           </div>
         )}

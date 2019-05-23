@@ -14,7 +14,7 @@ class UserChannelIndex extends React.Component {
         {({ data }) => {
           return (
             <div className="channel-list">
-              <h3>All Channels</h3>
+              <h3 className="channel-header">Channels</h3>
               {!data.userChannels || !data.userChannels.length ? (
                 <p>No channel available</p>
               ) : (

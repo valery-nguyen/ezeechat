@@ -1,0 +1,12 @@
+
+.right-panel {
+  height: 100vw;
+  width: 220px;
+  background: #3f0e40;;
+  position: fixed;
+  min-height: 1000px;
+  left: 0;
+  color: white;
+  font-variant-ligatures: common-ligatures;
+  font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif;
+}
