@@ -70,9 +70,37 @@
   color: white;
 }
 
+
 .channel-links-container {
   h3:hover {
     background-color: rgb(53, 14, 64);
   }
   padding-left: 5px;
+}
+
+.dm-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dm-button {
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  background: white;
+  height: 25px;
+  color: grey;
+  width: 115px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin-top: 12px;
+}
+
+.dm-info {
+  font-size: 13px;
+  color: #616061;
+  font-family: sans-serif;
 }
