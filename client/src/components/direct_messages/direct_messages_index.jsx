@@ -19,8 +19,7 @@ class DirectMessageIndex extends React.Component {
           
           return (
             <div className="direct-messages-list">
-              <h3 className="direct-message-header">Direct Messages</h3>
-              <h5 className="direct-message-header"><Link to={'/dms/new'}>New Direct Message</Link></h5>
+              <Link to={'/dms/new'} className="direct-message-header"><h5 >Direct Message</h5><span>+</span></Link>
               {!data.fetchUserMessages || !data.fetchUserMessages.length ? (
                 <p className="direct-message-link">No Direct Messages</p>
               ) : (

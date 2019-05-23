@@ -49,7 +49,7 @@ class ChannelNavDetail extends React.Component {
           if (error) return <p>Error</p>;
           return (
             <div className="channel-name-container">        
-              <h3 className="channel-name"><Link className="channel-link" to={`/channels/${data.channel._id}`}># {data.channel.name}</Link></h3>              
+              <Link className="channel-link" to={`/channels/${data.channel._id}`}><h3 className="channel-name"># {data.channel.name}</h3> </Link>             
               <Mutation
                 mutation={REMOVE_CHANNEL_USER}
                 onError={err => this.setState({ message: err.message })}
@@ -63,7 +63,7 @@ class ChannelNavDetail extends React.Component {
                 {(removeChannelUser, { data }) => (
                   <div>
                     <form onSubmit={e => this.leaveChannel(e, removeChannelUser)}>
-                      <button type="submit">Leave Channel</button>
+                      <button type="submit">&#215;</button>
                     </form>
                     <p>{this.state.message}</p>
                   </div>
