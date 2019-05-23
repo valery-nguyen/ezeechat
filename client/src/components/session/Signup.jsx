@@ -1,6 +1,8 @@
+import './session.scss';
+
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
-import Mutations from "../graphql/mutations";
+import Mutations from "../../graphql/mutations";
 
 const { SIGNUP_USER } = Mutations;
 
@@ -37,8 +39,9 @@ class Signup extends Component {
         update={(client, data) => this.updateCache(client, data)}
       >
         {signupUser => (
-          <div>
-            <form
+          <div className="signup-login-form-container">
+            <h1>Welcome to EzeeChat</h1>
+            <form className="signup-login-form"
               onSubmit={e => {
                 e.preventDefault();
                 signupUser({
@@ -50,6 +53,7 @@ class Signup extends Component {
                 });
               }}
             >
+              <h2>Sign up</h2>
               <input
                 value={this.state.name}
                 onChange={this.update("name")}

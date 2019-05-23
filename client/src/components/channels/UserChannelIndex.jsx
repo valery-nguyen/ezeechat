@@ -1,9 +1,11 @@
-import './channels.css';
+import './channels.scss';
 
 import React from "react";
 import { Query } from "react-apollo";
-import ChannelDetail from './ChannelDetail';
+import ChannelNavDetail from './ChannelNavDetail';
 import Queries from "../../graphql/queries";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const { FETCH_USER_CHANNELS } = Queries;
 
@@ -14,13 +16,13 @@ class UserChannelIndex extends React.Component {
         {({ data }) => {
           return (
             <div className="channel-list">
-              <h3 className="channel-header">Channels</h3>
+              <Link to='/channels'><h3 className="channel-header">Channels</h3></Link>
               {!data.userChannels || !data.userChannels.length ? (
-                <p>No channel available</p>
+                null
               ) : (
                   <div>
                     {data.userChannels.map(channel => {
-                      return <ChannelDetail key={channel._id} id={channel._id} />;
+                      return <ChannelNavDetail key={channel._id} id={channel._id} />;
                     })}
                   </div>
                 )}
@@ -29,11 +31,9 @@ class UserChannelIndex extends React.Component {
         }}
       </Query>
     } else {
-      return <h1> Requires user log in </h1>
+      return null;
     }
-      
-    
   }
 }
 
-export default UserChannelIndex;
+export default withRouter(UserChannelIndex);

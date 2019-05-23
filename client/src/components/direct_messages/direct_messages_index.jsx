@@ -1,4 +1,4 @@
-import './direct_messages.css';
+import './direct_messages.scss';
 
 import React from "react";
 import { Query } from "react-apollo";
