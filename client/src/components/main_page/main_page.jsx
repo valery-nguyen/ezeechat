@@ -32,7 +32,6 @@ class MainPage extends React.Component {
                           <Switch>
                             <AuthRoute exact path="/channels/create" component={CreateChannel} routeType="protected" currentUserId={currentUserId}/>
                             <AuthRoute exact exact path="/channels/:channelId" component={MainChat} routeType="protected" currentUserId={currentUserId}/>
-                            <AuthRoute exact path="/dms/new" component={DMUsers} routeType="protected" currentUserId={currentUserId}/>
                             <AuthRoute exact path="/dms/:dmID" component={DMChat} routeType="protected" currentUserId={currentUserId}/>
                           </Switch>
                         </div>

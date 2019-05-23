@@ -6,7 +6,7 @@ import Mutations from '../../graphql/mutations';
 import { withRouter } from "react-router";
 
 
-const { FETCH_USERS } = Queries;
+const { FETCH_USERS, FETCH_USER_MESSAGES } = Queries;
 const { CREATE_DIRECT_MESSAGE } = Mutations;
 
 class DirectMessageUsers extends React.Component {
@@ -34,6 +34,7 @@ class DirectMessageUsers extends React.Component {
           <Mutation
             mutation={CREATE_DIRECT_MESSAGE}
             onError={err => console.log(err.message)}
+            refetchQueries={() => [{ query: FETCH_USER_MESSAGES }]}
           >
             {(createDirectMessage, { data }) => {
               const createDMData = data;
