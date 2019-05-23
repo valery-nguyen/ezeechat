@@ -3,19 +3,21 @@
 	bottom: 0;
 	left: 240px;
 	right: 0;
-	margin-bottom: 20px;
-	margin-right: 20px;
-	border-radius: 7px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
 	border-width: 2px;
+	background-color:white;
 }
 
 .main-chat-window {
-	width: calc(100vw - 240px);
+	width: calc(100vw - 235px);
 	position: absolute;
 	right: 0;
 	top: 0;
 	margin: 0;
 	margin-top: 50px;
+	margin-bottom: 80px;
 }
 
 .send-message-form {
