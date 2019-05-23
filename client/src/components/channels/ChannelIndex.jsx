@@ -1,4 +1,4 @@
-import './channels.css';
+import './channels.scss';
 
 import React from "react";
 import { Query } from "react-apollo";
@@ -16,12 +16,10 @@ class ChannelIndex extends React.Component {
           if (error) return <p>Error</p>;
 
           return (
-            
-            <div className="channel-list">
-              <div>HEY THIS IS THE CHANNELS INDEX</div>
+            <div className="channel-index">
               <h3>Channels</h3>
               {!data.channels || !data.channels.length ? (
-                <p className="direct-message-link" >No channel available</p>
+                null
               ) : (
                   <div>
                     {data.channels.map(channel => {

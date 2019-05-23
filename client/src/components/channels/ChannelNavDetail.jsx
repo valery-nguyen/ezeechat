@@ -7,7 +7,7 @@ import { withRouter } from "react-router";
 const { FETCH_CHANNEL } = Queries;
 const { ADD_CHANNEL_USER, REMOVE_CHANNEL_USER } = Mutations;
 
-class ChannelDetail extends React.Component {
+class ChannelNavDetail extends React.Component {
   constructor(props){
     super(props);
 
@@ -19,8 +19,9 @@ class ChannelDetail extends React.Component {
     this.leaveChannel = this.leaveChannel.bind(this);
   }
 
-  joinChannel(e, addChannelUser, channelId) {
+  joinChannel(e, addChannelUser) {
     e.preventDefault();
+
     addChannelUser({
       variables: {
         id: this.props.id,
@@ -30,11 +31,14 @@ class ChannelDetail extends React.Component {
 
   leaveChannel(e, removeChannelUser) {
     e.preventDefault();
+
     removeChannelUser({
       variables: {
         id: this.props.id,
       }
     });
+
+    window.location.reload();
   }
 
   render() {
@@ -43,26 +47,25 @@ class ChannelDetail extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
-          const fetchChannelData = data;
           return (
-            <div>
-              <h3 className="channel-index-name"><a className="channel-index-link" href={`/channels/${fetchChannelData.channel._id}`}># {data.channel.name}</a></h3>              
+            <div className="channel-name-container">        
+              <h3 className="channel-name"><Link className="channel-link" to={`/channels/${data.channel._id}`}># {data.channel.name}</Link></h3>              
               <Mutation
-                mutation={ADD_CHANNEL_USER}
+                mutation={REMOVE_CHANNEL_USER}
                 onError={err => this.setState({ message: err.message })}
                 onCompleted={data => {
-                  const { name } = data.addChannelUser;
+                  const { name } = data.removeChannelUser;
                   this.setState({
-                    message: `You successfully join channel ${name}`
+                    message: `You successfully left channel ${name}`
                   });
                 }}
               >
-                {(addChannelUser, { data }) => (
+                {(removeChannelUser, { data }) => (
                   <div>
-                    <form onSubmit={e => this.joinChannel(e, addChannelUser, fetchChannelData.channel._id)}>
-                      <button type="submit">Join Channel</button>
+                    <form onSubmit={e => this.leaveChannel(e, removeChannelUser)}>
+                      <button type="submit">Leave Channel</button>
                     </form>
-                    {(this.state.message.length > 0) ? <div><p>{this.state.message}</p> <a href={`/channels/${fetchChannelData.channel._id}`}>Go to channel</a></div> : null}
+                    <p>{this.state.message}</p>
                   </div>
                 )}
               </Mutation>
@@ -74,4 +77,4 @@ class ChannelDetail extends React.Component {
   }
 }
 
-export default withRouter(ChannelDetail);
+export default withRouter(ChannelNavDetail);

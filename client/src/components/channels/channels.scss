@@ -1,32 +1,41 @@
-.direct-messages-list {
+.channel-list {
   color: white;
   margin-top: 50px;
 }
 
-.direct-message-header {
+.channel-header {
   font-size: 16px;
   margin-left: 10px;
   font-weight: lighter;
 }
 
-.direct-message-link {
+.channel-link {
   color: white;
   font-size: 16px;
   text-decoration: none;
   margin-left: 25px;
   width: 100%;
+  font-weight: lighter;
 }
 
-.direct-message-name {
+.channel-link:hover {
+  
+}
+
+.channel-name-container button{
+  margin-left: 55px;
+}
+
+.channel-name {
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
+  margin: 0;
 }
 
-.direct-message-name:hover {
-  background-color: black;
+.channel-name:hover {
+  background: black;
   opacity: .2;
   z-index: 1;
   width: 100%;
-  color: white;
 }
