@@ -54,6 +54,7 @@ class MainChat extends React.Component {
                     <ul className="message-list">
                       {allMessages.map((message, idx) => (
                         <li key={idx}>
+                          <p>{message.author}</p>
                           <p>{message.date}</p>
                           <p>{message.body}</p>
 
