@@ -22,10 +22,9 @@ class DirectMessageDetail extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
-          console.log(data);
           return (
             <div>        
-              <h3><Link to={`/dms/${data.directmessage._id}`}>{`Direct Message: ${data.directmessage}`}</Link></h3>
+              <h3><Link to={`/dms/${data.directmessage._id}`}>{data.directmessage.users[1].email}</Link></h3>
             </div>
           );
         }}

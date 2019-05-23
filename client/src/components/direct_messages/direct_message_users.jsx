@@ -1,8 +1,10 @@
+import './users.css';
 import React from "react";
 import { Query, Mutation } from "react-apollo";
 import Queries from "../../graphql/queries";
 import Mutations from '../../graphql/mutations';
 import { withRouter } from "react-router";
+
 
 const { FETCH_USERS } = Queries;
 const { CREATE_DIRECT_MESSAGE } = Mutations;
@@ -17,9 +19,9 @@ class DirectMessageUsers extends React.Component {
     createDirectMessage({
       variables: {
         id: user_id
-      }
-    }).then(() => console.log("this"), (err) => console.log(err));
-    // }).then((dm) => {console.log(dm); return this.props.history.push(`/dms/${dm._id}`);});
+      } 
+    })
+      .then((data) => this.props.history.push(`/dms/${data.data.createDirectMessage._id}`));
   }
 
   render() {
@@ -29,17 +31,18 @@ class DirectMessageUsers extends React.Component {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error</p>;
         const fetchUsersData = data;
-        console.log(data.users);
+        // console.log(data.users);
         return (
           <Mutation
             mutation={CREATE_DIRECT_MESSAGE}
+            onError={err => console.log(err.message)}
           >
             {(createDirectMessage, { data }) => {
               const createDMData = data;
               return <div className="dm-users">
-                <p>{'Users'}</p>
+                <p>Users</p>
                 {(!fetchUsersData.users || !fetchUsersData.users.length) ? (
-                <p>{'Users'}</p>
+                <p>Users</p>
               ) : (
                   <div>
                     <ul>
