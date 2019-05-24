@@ -112,3 +112,39 @@
   color: #616061;
   font-family: sans-serif;
 }
+
+.dm-name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+}
+
+.dm-name-container:hover {
+  background-color: rgb(53, 14, 64);
+  cursor: pointer;
+  width: 100%;
+}
+
+.dm-name-container button:hover{
+  color: whitesmoke;
+}
+
+.dm-link h3 {
+  color: rgb(197,183,198);
+  font-size: 15px;
+  text-decoration: none;
+  width: 100%;
+  font-weight: lighter;
+  padding-right: 10px;
+  margin: 3px 2px;
+}
+
+.dm-name {
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0;
+  box-sizing: border-box;
+}

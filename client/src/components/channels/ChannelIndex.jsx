@@ -42,7 +42,7 @@ class ChannelIndex extends React.Component {
                       null
                     ) : (
                         <div>
-                          {channelData.channels.forEach(channel => {
+                          {channelData.channels.map(channel => {
                             inChannel = false;
                             channel.users.forEach(user => {
                               if (user._id === userId) inChannel = true;
