@@ -43,7 +43,7 @@ class Login extends React.Component {
         {loginUser => (
           <div className="signup-login-form-container">
             <div className="login-header">
-              <h1>EzeeChat</h1>
+              <h1>Welcome to EzeeChat</h1>
               <Link to="/signup"><p>Sign Up</p></Link>
             </div>
             <form className="signup-login-form"

@@ -1,5 +1,5 @@
 import './messages.scss';
-
+import { useEffect, useRef } from 'react';
 import React from 'react';
 import { Query, Subscription } from "react-apollo";
 import Queries from "../../graphql/queries";
@@ -10,8 +10,23 @@ const { FETCH_CHANNEL } = Queries;
 const { NEW_MESSAGE_SUBSCRIPTION, REMOVED_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
 class MainChat extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+  }
+
+  componentDidUpdate() {
+  }
+
   render() {
     let channelId;
+
+    let element = document.getElementById("bottom");
+    if (element !== null) element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    
+
     if (!this.props.history) {
       channelId = "5ce2f5d2c902631a973f73e6";
     } else {
@@ -19,9 +34,10 @@ class MainChat extends React.Component {
     }
 
     return (
+      <div>
       <Query query={FETCH_CHANNEL} variables={{ id: channelId }}>
         {({ subscribeToMore, loading, error, data, refetch }) => {
-          if (loading) return "Loading...";
+          if (loading) return null;
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
           if (!data.channel) return null;
@@ -43,11 +59,13 @@ class MainChat extends React.Component {
                     addedMessageData.messageSent.channel === this.props.history.location.pathname.slice(10)) {
                     allMessages.push(addedMessageData.messageSent);
                     allMessagesIds.push(addedMessageData.messageSent._id);
+                    window.scrollTo(0, 9999999999);
                   } else if (removedMessageData && allMessagesIds.includes(removedMessageData.messageRemoved._id) &&
                     removedMessageData.messageRemoved.channel === this.props.history.location.pathname.slice(10)) {
                     let removedMessageIdx = allMessagesIds.indexOf(removedMessageData.messageRemoved._id);
                     allMessages.splice(removedMessageIdx, 1);
                     allMessagesIds.splice(removedMessageIdx, 1);
+                    window.scrollTo(0, 9999999999);
                   }
 
                   return (
@@ -67,20 +85,6 @@ class MainChat extends React.Component {
                                   <p className="message-body">{message.body}</p>
                                 </div>
                               </div>
-
-                              {/* <Mutation
-                                mutation={DELETE_MESSAGE}
-                                variables={{ id: message._id }}
-                              >
-                                {(deleteMessage, { data }) => {
-                                    return <div>
-                                      <form onSubmit={e => {e.preventDefault(); return deleteMessage(message._id)}}>
-                                        <button type="submit">Remove Message</button>
-                                      </form>
-                                    </div>
-                                  }
-                                }
-                              </Mutation> */}
                             </li>
                           ))}
                         </ul>
@@ -95,6 +99,7 @@ class MainChat extends React.Component {
           );
         }}
       </Query>
+      </div>
     )
   }
 }

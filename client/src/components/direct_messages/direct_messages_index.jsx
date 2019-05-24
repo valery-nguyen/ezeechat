@@ -14,7 +14,7 @@ class DirectMessageIndex extends React.Component {
       return (
         <Query query={FETCH_USER_MESSAGES} variables={{ id: this.props.currentUserId }}>
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+            if (loading) return null;
             if (error) return <p>Error</p>;
           
           return (

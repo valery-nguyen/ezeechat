@@ -10,12 +10,19 @@ const Message = require("./models/Message");
 const DirectMessage = require("./models/DirectMessage");
 const schema = require("./schema/schema");
 const app = express();
-
+const path = require("path");
 const  { ApolloServer, gql } = require('apollo-server-express');
 
 const  { execute, subscribe } = require('graphql');
 const  { createServer } = require('http');
 const  { SubscriptionServer } = require('subscriptions-transport-ws');
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+}
 
 if (!db) {
   throw new Error("You must provide a string to connect to mLab");

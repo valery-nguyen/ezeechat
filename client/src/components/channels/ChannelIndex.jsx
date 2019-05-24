@@ -13,7 +13,7 @@ class ChannelIndex extends React.Component {
     return (
       <Query query={FETCH_CHANNELS}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return null;
           if (error) return <p>Error</p>;
           const channelData = data;
           return (

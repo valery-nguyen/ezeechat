@@ -30,13 +30,13 @@ class DirectMessageUsers extends React.Component {
         return (
         <Query query={FETCH_USERS} >
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+            if (loading) return null;
             if (error) return <p>Error</p>;
             const fetchUsersData = data;
             return (
               <Query query={FETCH_USER_MESSAGES} variables={{ id: currentUserId }}>
                 {({ loading, error, data }) => {
-                  if (loading) return <p>Loading...</p>;
+                  if (loading) return null;
                   if (error) return <p>Error</p>;
                   const messageData = data;
                   const badUsers = messageData.fetchUserMessages.map((dm) => dm.users[1]._id)

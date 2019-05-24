@@ -50,10 +50,9 @@ class ChannelDetail extends React.Component {
     return (
       <Query query={FETCH_CHANNEL} variables={{ id: this.props.id }}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return null;
           if (error) return <p>Error</p>;
           const fetchChannelData = data;
-          // debugger;
           return (
             <div className="channels-box">
               

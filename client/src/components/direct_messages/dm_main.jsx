@@ -20,11 +20,23 @@ class DMChat extends React.Component {
     return names.slice(0, -2);
   }
 
+  componentDidMount() {
+    window.addEventListener('DOMContentLoaded', (event) => {
+      console.log('DOM fully loaded and parsed');
+      console.log(document.getElementById("empty"));
+    });
+    // let el;
+    // window.onload = () => (console.log(document));
+    // console.log(document);
+    // console.log(el);
+    // .scrollIntoView();
+  }
+
   render() {
     return (
       <Query query={FETCH_DIRECT_MESSAGES} variables={{ id: this.props.history.location.pathname.split("/").slice(-1)[0] }}>
         {({ loading, error, data}) => {
-          if (loading) return "Loading...";
+          if (loading) return null;
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
           let allMessages;
@@ -50,7 +62,6 @@ class DMChat extends React.Component {
                     <div className="main-chat-window">
                       <ul className="message-list">
                         {allMessages.map((message, idx) => {
-                          console.log(messageAuthor);
                           messageAuthor = newData.directmessage.users.filter((user) => (user._id === message.user_id))[0].name;
                           return <li className="message-element" key={idx}>
                           <div className="message-object">
@@ -66,6 +77,10 @@ class DMChat extends React.Component {
                         </li>
                         })}
                       </ul>
+
+
+                        
+                        <div id={"empty"}></div>
                       <CreateDirectMessage />
                     </div>
                   </div>

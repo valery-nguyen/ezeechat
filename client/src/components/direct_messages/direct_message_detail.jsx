@@ -20,7 +20,7 @@ class DirectMessageDetail extends React.Component {
     return (
       <Query query={FETCH_DIRECT_MESSAGES} variables={{ id: this.props.id }}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return null;
           if (!data.directmessage) return null;
           if (error) return <p>Error</p>;
           const receiverUserEmail =
