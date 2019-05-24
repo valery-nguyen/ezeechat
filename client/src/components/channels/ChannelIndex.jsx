@@ -47,7 +47,7 @@ class ChannelIndex extends React.Component {
                             channel.users.forEach(user => {
                               if (user._id === userId) inChannel = true;
                             })
-                            if (!inChannel) return <ChannelDetail key={channel._id} id={channel._id} />;
+                            if (!inChannel) return <ChannelDetail key={channel._id} id={channel._id} userId={userId}/>;
                           })}
                         </div>
                       )}
