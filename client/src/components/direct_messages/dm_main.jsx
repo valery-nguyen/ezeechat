@@ -28,12 +28,15 @@ class DMChat extends React.Component {
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
           let allMessages;
+          let names;
           if (!data.directmessage) {
             allMessages = [];
+            names = "";
           } else {
             allMessages = [].concat(data.directmessage.messages);
+            names = this.namesGetter(data.directmessage.users);
           }
-          let names = this.namesGetter(data.directmessage.users);
+          
           let newData = data;
           let messageAuthor;
           return (
@@ -47,6 +50,7 @@ class DMChat extends React.Component {
                     <div className="main-chat-window">
                       <ul className="message-list">
                         {allMessages.map((message, idx) => {
+                          console.log(messageAuthor);
                           messageAuthor = newData.directmessage.users.filter((user) => (user._id === message.user_id))[0].name;
                           return <li className="message-element" key={idx}>
                           <div className="message-object">
