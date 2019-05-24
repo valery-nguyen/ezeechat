@@ -4,7 +4,6 @@ import React from "react";
 import { Query } from "react-apollo";
 import ChannelDetail from './ChannelDetail';
 import Queries from "../../graphql/queries";
-import { Link } from "react-router-dom";
 
 const { FETCH_CHANNELS, CURRENT_USER } = Queries;
 
@@ -43,7 +42,7 @@ class ChannelIndex extends React.Component {
                       null
                     ) : (
                         <div>
-                          {channelData.channels.map(channel => {
+                          {channelData.channels.forEach(channel => {
                             inChannel = false;
                             channel.users.forEach(user => {
                               if (user._id === userId) inChannel = true;

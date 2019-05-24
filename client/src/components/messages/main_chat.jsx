@@ -1,14 +1,12 @@
 import './messages.scss';
 
 import React from 'react';
-import { Query, Subscription, subscribeToMore, Mutation } from "react-apollo";
+import { Query, Subscription } from "react-apollo";
 import Queries from "../../graphql/queries";
-import Mutations from "../../graphql/mutations";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
 import { HeaderConsole } from './../main_page/header_console';
-const { FETCH_CHANNEL, FETCH_MESSAGES } = Queries;
-const { DELETE_MESSAGE } = Mutations;
+const { FETCH_CHANNEL } = Queries;
 const { NEW_MESSAGE_SUBSCRIPTION, REMOVED_MESSAGE_SUBSCRIPTION } = Subscriptions;
 
 class MainChat extends React.Component {

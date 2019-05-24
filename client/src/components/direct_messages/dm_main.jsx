@@ -1,7 +1,6 @@
 import React from 'react';
-import { Query, Subscription, Mutation } from "react-apollo";
+import { Query, Subscription } from "react-apollo";
 import Queries from "../../graphql/queries";
-import Mutations from "../../graphql/mutations";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateDirectMessage from './../direct_messages/create_direct_message';
 import { HeaderConsole } from './../main_page/header_console';

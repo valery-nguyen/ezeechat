@@ -1,8 +1,7 @@
 import React from "react";
-import { Mutation, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import Queries from "../../graphql/queries";
-import Mutations from "../../graphql/mutations";
 const { FETCH_DIRECT_MESSAGES } = Queries;
 
 
@@ -30,7 +29,7 @@ class DirectMessageDetail extends React.Component {
               ? data.directmessage.users[0].email
               : data.directmessage.users[1].email;
           return (
-            <div className="channel-links-container">        
+            <div className="channel-name-container">        
               <Link className="channel-link" to={`/dms/${data.directmessage._id}`}><h3 className="channel-name" >{`${receiverUserEmail}`}</h3></Link>
             </div>
           );

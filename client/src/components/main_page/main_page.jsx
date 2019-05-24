@@ -8,8 +8,6 @@ import MainNav from './main_nav';
 import CreateChannel from "../channels/CreateChannel";
 import MainChat from '../messages/main_chat';
 import DMChat from '../direct_messages/dm_main';
-import DMUsers from '../direct_messages/direct_message_users';
-import { HeaderConsole } from './header_console';
 
 import Queries from "../../graphql/queries";
 const { IS_LOGGED_IN, CURRENT_USER } = Queries;
@@ -35,7 +33,7 @@ class MainPage extends React.Component {
                           <MainNav className="main-page-nav" currentUserId={currentUserId} />
                           <Switch>
                             <AuthRoute exact path="/channels/create" component={CreateChannel} routeType="protected" currentUserId={currentUserId}/>
-                            <AuthRoute exact exact path="/channels/:channelId" component={MainChat} routeType="protected" currentUserId={currentUserId}/>
+                            <AuthRoute exact path="/channels/:channelId" component={MainChat} routeType="protected" currentUserId={currentUserId}/>
                             <AuthRoute exact path="/dms/:dmID" component={DMChat} routeType="protected" currentUserId={currentUserId}/>
                             <Redirect from='/' to='/channels/5ce7290ac8f6f10ed2057a15' />
                           </Switch>

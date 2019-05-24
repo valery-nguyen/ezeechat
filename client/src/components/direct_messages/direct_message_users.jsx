@@ -44,7 +44,6 @@ class DirectMessageUsers extends React.Component {
                   refetchQueries={() => [{ query: FETCH_USER_MESSAGES }]}
                 >
                   {(createDirectMessage, { data }) => {
-                    const createDMData = data;
                     
                     return (
                     <div className="whole-index">

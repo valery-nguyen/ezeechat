@@ -8,8 +8,13 @@
   text-decoration: none;
   width: 100%;
   font-weight: lighter;
-  padding-right: 10px;
   margin: 3px 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0;
+  box-sizing: border-box;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .channel-header a:hover{
@@ -17,14 +22,14 @@
 }
 
 #add-a-channel:hover {
-  background-color: rgb(53, 14, 64);
+  // background-color: rgb(53, 14, 64);
 }
 
 .channel-list {
   color: rgb(197,183,198);
   margin-top: 15px;
-  margin-left: 5px;
   font-size: 14px;
+  // width: 100%;
 }
 
 .channel-header {
@@ -36,7 +41,7 @@
   padding-left: 12px;
 }
 
-.channel-link h3{
+.channel-link h3 {
   color: rgb(197,183,198);
   font-size: 15px;
   text-decoration: none;
@@ -54,7 +59,7 @@
 }
 
 .channel-index {
-  p{
+  p {
     padding-left: 12px;
     line-height: 1.5;
     margin-bottom: 10px;
@@ -80,7 +85,6 @@
   background-repeat: no-repeat;
   background-size: 40%;
   overflow: hidden;
-  // height: 100vh;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -113,13 +117,13 @@
   padding-top: 3px;
   padding-bottom: 3px;
   margin: 0;
-  padding-left: 12px;
   box-sizing: border-box;
 }
 
 .channel-name-container:hover {
   background-color: rgb(53, 14, 64);
   cursor: pointer;
+  width: 100%;
 }
 
 .channel-browse-header {
@@ -239,4 +243,12 @@
   font-size: 12px;
   margin-right: 7px;
   font-family: sans-serif;
+}
+
+.add-channel-button-plus {
+  margin-right: 12px;
+}
+
+.leave-channel-button-x {
+  margin-right: 12px;
 }
