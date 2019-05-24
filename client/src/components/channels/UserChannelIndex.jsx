@@ -12,6 +12,7 @@ const { FETCH_USER_CHANNELS } = Queries;
 class UserChannelIndex extends React.Component {
   render() {
     if (this.props.currentUserId) {
+      
       return <Query query={FETCH_USER_CHANNELS} variables={{ id: this.props.currentUserId }}>
         {({ data }) => {
           return (

@@ -4,6 +4,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import ChannelDetail from './ChannelDetail';
 import Queries from "../../graphql/queries";
+import { Link } from 'react-router-dom';
 
 const { FETCH_CHANNELS, CURRENT_USER } = Queries;
 
@@ -26,7 +27,8 @@ class ChannelIndex extends React.Component {
                   <div className="channel-index">
                     <div className="channel-browse-header">
                       <h3 className="channel-index-header">Browse channels</h3>
-                      <button className="create-channel-button">Create Channel</button>
+
+                      <Link to="/channels/new"><button className="create-channel-button">Create Channel</button></Link>
                     </div>
                   
                     <div>
@@ -42,7 +44,7 @@ class ChannelIndex extends React.Component {
                       null
                     ) : (
                         <div>
-                          {channelData.channels.forEach(channel => {
+                          {channelData.channels.map(channel => {
                             inChannel = false;
                             channel.users.forEach(user => {
                               if (user._id === userId) inChannel = true;

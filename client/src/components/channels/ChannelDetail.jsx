@@ -68,13 +68,6 @@ class ChannelDetail extends React.Component {
                     mutation={ADD_CHANNEL_USER}
                     onError={err => this.setState({ message: err.message })}
                     refetchQueries={() => [{ query: FETCH_USER_CHANNELS, variables: {id: this.props.userId} }]}
-                    // onCompleted={data => {
-                    //   const { _id } = data.addChannelUser;
-                    //   // this.setState({
-                    //   //   message: `You joined channel ${name}`
-                    //   // });
-                    //   this.props.history.push(`/channels/${_id}`);
-                    // }}
                   >
                     {(addChannelUser, { data }) => (
                       <div>

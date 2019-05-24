@@ -45,7 +45,7 @@ class Signup extends Component {
           <div className="signup-login-form-container">
             <div className="login-header">
               <h1>Welcome to EzeeChat</h1>
-              <Link to="/login"><p>Log In</p></Link>
+              <Link to="/signin"><p>Log In</p></Link>
             </div>
             <form className="signup-login-form"
               onSubmit={e => {

@@ -44,7 +44,7 @@ const MainNav = props => {
               else {
                 return (
                   <div className="nav">
-                    <Link to="/login">Log in</Link>
+                    <Link to="/signin">Sign In</Link>
                     <Link to="/signup">Sign Up</Link>
                   </div>
                 );
