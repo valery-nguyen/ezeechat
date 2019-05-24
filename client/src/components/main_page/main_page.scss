@@ -4,7 +4,9 @@
     font-size: 20px;
     font-weight: 540;
     margin: 0 2px;
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
   }
 
   height: auto;
@@ -15,8 +17,10 @@
   left: 0;
   top: 0;
   color: white;
-  font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif;
-  padding: 12px;
+  font-family: sans-serif;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 12px;
   box-sizing: border-box;
   z-index: 2;
 }
@@ -62,6 +66,7 @@
 
 .upper-left-thing {
   width: 100%;
+  font-family: sans-serif;
 }
 
 .lower-left-things {

@@ -29,7 +29,7 @@ const MainNav = props => {
                           client.writeData({
                             data: {
                               isLoggedIn: false,
-                              cart: []
+                              currentUserId: null
                             }
                           });
                           props.history.push("/");

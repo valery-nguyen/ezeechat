@@ -15,7 +15,7 @@ const App = () => {
       <Switch>
         <AuthRoute exact path="/dms/new" component={DMUsers} routeType="protected" />
         <AuthRoute exact path="/channels/new" component={CreateChannel} routeType="protected" />
-        <AuthRoute exact path="/channels/" component={ChannelIndex} routeType="protected"/>
+        <AuthRoute exact path="/channels/" component={ChannelIndex} routeType="protected" />
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/signup" component={Signup} routeType="auth" />
         <AuthRoute path="/" component={MainPage} routeType="protected" />
