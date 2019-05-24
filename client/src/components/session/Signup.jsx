@@ -1,5 +1,5 @@
 import './session.scss';
-
+import { Link } from 'react-router-dom';
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
@@ -40,7 +40,10 @@ class Signup extends Component {
       >
         {signupUser => (
           <div className="signup-login-form-container">
-            <h1>Welcome to EzeeChat</h1>
+            <div className="login-header">
+              <h1>Welcome to EzeeChat</h1>
+              <Link to="/login"><p>Log In</p></Link>
+            </div>
             <form className="signup-login-form"
               onSubmit={e => {
                 e.preventDefault();
@@ -53,7 +56,7 @@ class Signup extends Component {
                 });
               }}
             >
-              <h2>Sign up</h2>
+              <h2>Sign Up</h2>
               <input
                 value={this.state.name}
                 onChange={this.update("name")}
