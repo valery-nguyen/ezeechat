@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
 }
 
 .log-out-button {
@@ -10,6 +11,8 @@
   justify-content: center;
   color: rgb(197,183,198);
   width: 100%;
+  padding: 10px;
+  // margin-right: 10px;
 }
 
 .log-out-button:hover {
@@ -25,7 +28,7 @@
 .direct-message-header {
   h5 {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
   }
   span {
@@ -111,4 +114,40 @@
   font-size: 13px;
   color: #616061;
   font-family: sans-serif;
+}
+
+.dm-name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 11px;
+}
+
+.dm-name-container:hover {
+  background-color: rgb(53, 14, 64);
+  cursor: pointer;
+  width: 100%;
+}
+
+.dm-name-container button:hover{
+  color: whitesmoke;
+}
+
+.dm-link h3 {
+  color: rgb(197,183,198);
+  font-size: 13px;
+  text-decoration: none;
+  width: 100%;
+  font-weight: lighter;
+  padding-right: 10px;
+  margin: 3px 2px;
+}
+
+.dm-name {
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin: 0;
+  box-sizing: border-box;
 }
