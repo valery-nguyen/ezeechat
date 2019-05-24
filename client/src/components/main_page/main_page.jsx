@@ -9,6 +9,7 @@ import CreateChannel from "../channels/CreateChannel";
 import MainChat from '../messages/main_chat';
 import DMChat from '../direct_messages/dm_main';
 import DMUsers from '../direct_messages/direct_message_users';
+import { HeaderConsole } from './header_console';
 
 import Queries from "../../graphql/queries";
 const { IS_LOGGED_IN, CURRENT_USER } = Queries;
