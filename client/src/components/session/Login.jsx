@@ -21,7 +21,10 @@ class Login extends React.Component {
 
   updateCache(client, { data }) {
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { 
+        isLoggedIn: data.login.loggedIn,
+        currentUserId: data.login._id
+       }
     });
   }
 
@@ -30,8 +33,9 @@ class Login extends React.Component {
       <Mutation
         mutation={LOGIN_USER}
         onCompleted={data => {
-          const { token } = data.login;
+          const { token, _id } = data.login;
           localStorage.setItem('auth-token', token);
+          localStorage.setItem('currentUserId', _id);
           this.props.history.push('/');
         }}
         update={(client, data) => this.updateCache(client, data)}
@@ -63,7 +67,7 @@ class Login extends React.Component {
                 placeholder="Password"
               />
               <button type="submit">Log In</button>
-              
+
             </form>
           </div>
         )}

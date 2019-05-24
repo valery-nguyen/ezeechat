@@ -82,8 +82,9 @@ const RootQueryType = new GraphQLObjectType({
     },
     fetchUserMessages: {
       type: new GraphQLList(DirectMessageType),
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args, context) {
-        return DirectMessageService.fetchUserMessages(context);
+        return DirectMessageService.fetchUserMessages(args, context);
       }
     }
   })
