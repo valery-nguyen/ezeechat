@@ -23,13 +23,10 @@ class MainPage extends React.Component {
           <div>
             <Query query={IS_LOGGED_IN}>
               {({ data }) => {
-                console.log(data);
                 if (data.isLoggedIn) {
                   return (
                     <Query query={CURRENT_USER}>
                       {({ data }) => {
-                        console.log("currentUSer");
-                        console.log(data);
                         const currentUserId = data.currentUserId;
                         return <div className="main-page-container">
                           <MainNav className="main-page-nav" currentUserId={currentUserId} />

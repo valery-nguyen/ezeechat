@@ -78,8 +78,8 @@ export default {
     }
   `,
   FETCH_USER_MESSAGES: gql`
-    query fetchUserMessages {
-      fetchUserMessages {
+    query fetchUserMessages($id: ID!) {
+      fetchUserMessages(_id: $id) {
         _id
         users {
           _id

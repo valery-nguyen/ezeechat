@@ -58,7 +58,7 @@ const client = new ApolloClient({
 cache.writeData({
   data: {
     isLoggedIn: Boolean(localStorage.getItem("auth-token")),
-    currentUserId: null
+    currentUserId: localStorage.getItem("currentUserId")
   }
 });
 

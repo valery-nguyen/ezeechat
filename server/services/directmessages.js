@@ -70,12 +70,9 @@ const createDirectMessage = async (data, context) => {
 };
 
 // gets the DM's for a user
-const fetchUserMessages = async (context) => {
+const fetchUserMessages = async (args, context) => {
   try {
-    // check for loggedin user
-    const token = context.token;
-    const decoded = await jwt.verify(token, key);
-    const { id } = decoded;
+    const id = args._id;
     const loggedIn = await User.findById(id);
 
     if (!loggedIn) {

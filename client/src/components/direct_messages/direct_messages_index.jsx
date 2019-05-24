@@ -10,31 +10,34 @@ const { FETCH_USER_MESSAGES } = Queries;
 
 class DirectMessageIndex extends React.Component {
   render() {
-    return (
-      <Query query={FETCH_USER_MESSAGES} >
-        {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error</p>;
+    if (this.props.currentUserId) {
+      return (
+        <Query query={FETCH_USER_MESSAGES} variables={{ id: this.props.currentUserId }}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error</p>;
 
-          
-          return (
-            <div className="direct-messages-list">
-              <Link to={'/dms/new'} className="direct-message-header"><h5 >Direct Message</h5><span>+</span></Link>
-              {!data.fetchUserMessages || !data.fetchUserMessages.length ? (
-                <p className="no-direct-messages">No Direct Messages</p>
-              ) : (
-                  <div>
-                    {data.fetchUserMessages.map(message => {
-                      return <DirectMessageDetail key={message._id} id={message._id} currentUserId={this.props.currentUserId} />;
-                    })}
-                  </div>
-                )}
-            </div>
-          );
+            return (
+              <div className="direct-messages-list">
+                <Link to={'/dms/new'} className="direct-message-header"><h5 >Direct Message</h5><span>+</span></Link>
+                {!data.fetchUserMessages || !data.fetchUserMessages.length ? (
+                  <p className="no-direct-messages">No Direct Messages</p>
+                ) : (
+                    <div>
+                      {data.fetchUserMessages.map(message => {
+                        return <DirectMessageDetail key={message._id} id={message._id} currentUserId={this.props.currentUserId} />;
+                      })}
+                    </div>
+                  )}
+              </div>
+            );
 
-        }}
-      </Query>
-    )
+          }}
+        </Query>
+        )
+    } else {
+      return null;
+    }
   }
 }
 
