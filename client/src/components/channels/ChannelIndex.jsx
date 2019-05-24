@@ -19,9 +19,9 @@ class ChannelIndex extends React.Component {
           <Query query={CURRENT_USER}>
             {({ data }) => {
               const userId = data.currentUserId;
-
+              let inChannel = false;
               return (
-
+                
                <div className="whole-index">
                   <div className="channel-index">
                     <div className="channel-browse-header">
@@ -43,17 +43,11 @@ class ChannelIndex extends React.Component {
                     ) : (
                         <div>
                           {channelData.channels.map(channel => {
-                            console.log(channel.users)
-                            console.log(userId)
-
+                            inChannel = false;
                             channel.users.forEach(user => {
-                              if (user._id === userId) console.log("in this channel");
+                              if (user._id === userId) inChannel = true;
                             })
-                            return <ChannelDetail key={channel._id} id={channel._id} />;
-
-
-
-
+                            if (!inChannel) return <ChannelDetail key={channel._id} id={channel._id} />;
                           })}
                         </div>
                       )}
