@@ -38,8 +38,9 @@ const signup = async data => {
     user.save();
 
     const token = jwt.sign({ id: user._id }, key);
+    const _id = user._id;
 
-    return { token, loggedIn: true, ...user._doc, password: null };
+    return { token, loggedIn: true, ...user._doc, password: null, _id };
   } catch (err) {
     throw err;
   }
@@ -58,12 +59,14 @@ const login = async data => {
     const user = await User.findOne({ email });
     if (!user) throw new Error("This user does not exist");
 
+    const _id = user._id;
+
     const isValidPassword = await bcrypt.compareSync(password, user.password);
     if (!isValidPassword) throw new Error("Invalid password");
 
     const token = jwt.sign({ id: user.id }, key);
 
-    return { token, loggedIn: true, ...user._doc, password: null };
+    return { token, loggedIn: true, ...user._doc, password: null, _id };
   } catch (err) {
     throw err;
   }

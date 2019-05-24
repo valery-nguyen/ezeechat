@@ -2,7 +2,7 @@ import './session.scss';
 
 import React from 'react';
 import { Mutation } from "react-apollo";
-
+import { Link } from 'react-router-dom';
 import Mutations from "../../graphql/mutations";
 const { LOGIN_USER } = Mutations;
 
@@ -21,7 +21,10 @@ class Login extends React.Component {
 
   updateCache(client, { data }) {
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { 
+        isLoggedIn: data.login.loggedIn,
+        currentUserId: data.login._id
+       }
     });
   }
 
@@ -30,15 +33,19 @@ class Login extends React.Component {
       <Mutation
         mutation={LOGIN_USER}
         onCompleted={data => {
-          const { token } = data.login;
+          const { token, _id } = data.login;
           localStorage.setItem('auth-token', token);
+          localStorage.setItem('currentUserId', _id);
           this.props.history.push('/');
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
         {loginUser => (
           <div className="signup-login-form-container">
-            <h1>Welcome to EzeeChat</h1>
+            <div className="login-header">
+              <h1>EzeeChat</h1>
+              <Link to="/signup"><p>Sign Up</p></Link>
+            </div>
             <form className="signup-login-form"
               onSubmit={e => {
                 e.preventDefault();
@@ -50,7 +57,7 @@ class Login extends React.Component {
                 });
               }}
             >
-              <h2>Sign in</h2>
+              <h2>Sign In</h2>
               <input
                 value={this.state.email}
                 onChange={this.update("email")}
@@ -62,8 +69,7 @@ class Login extends React.Component {
                 type="password"
                 placeholder="Password"
               />
-              <button type="submit">Log In</button>
-              
+             <button type="submit">Sign In</button>
             </form>
           </div>
         )}

@@ -6,6 +6,7 @@ export default {
       login(email: $email, password: $password) {
         token
         loggedIn
+        _id
       }
     }
   `,
@@ -14,6 +15,7 @@ export default {
       signup(email: $email, name: $name, password: $password) {
         token
         loggedIn
+        _id
       }
     }
   `,

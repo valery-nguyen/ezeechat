@@ -10,12 +10,12 @@ const { FETCH_USER_MESSAGES } = Queries;
 
 class DirectMessageIndex extends React.Component {
   render() {
-    return (
-      <Query query={FETCH_USER_MESSAGES} >
-        {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error</p>;
-
+    if (this.props.currentUserId) {
+      return (
+        <Query query={FETCH_USER_MESSAGES} variables={{ id: this.props.currentUserId }}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error</p>;
           
           return (
             <div className="direct-messages-list">
@@ -31,10 +31,12 @@ class DirectMessageIndex extends React.Component {
                 )}
             </div>
           );
-
-        }}
-      </Query>
-    )
+          }}
+        </Query>
+        )
+    } else {
+      return null;
+    }
   }
 }
 
