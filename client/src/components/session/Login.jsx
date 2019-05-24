@@ -63,6 +63,7 @@ class Login extends React.Component {
                 placeholder="Password"
               />
               <button type="submit">Log In</button>
+              
             </form>
           </div>
         )}

@@ -26,6 +26,7 @@ class MainChat extends React.Component {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
+          if (!data.channel) return null;
           let channelName = data.channel.name;
           let allMessages = [].concat(data.channel.messages);
           let allMessagesIds = data.channel.messages.map(message => message._id);

@@ -2,7 +2,7 @@ import './main_page.scss';
 
 import React from "react";
 import { ApolloConsumer, Query } from "react-apollo";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import AuthRoute from "../../util/route_util";
 import MainNav from './main_nav';
 import CreateChannel from "../channels/CreateChannel";
@@ -23,10 +23,13 @@ class MainPage extends React.Component {
           <div>
             <Query query={IS_LOGGED_IN}>
               {({ data }) => {
+                console.log(data);
                 if (data.isLoggedIn) {
                   return (
                     <Query query={CURRENT_USER}>
                       {({ data }) => {
+                        console.log("currentUSer");
+                        console.log(data);
                         const currentUserId = data.currentUserId;
                         return <div className="main-page-container">
                           <MainNav className="main-page-nav" currentUserId={currentUserId} />
@@ -34,6 +37,7 @@ class MainPage extends React.Component {
                             <AuthRoute exact path="/channels/create" component={CreateChannel} routeType="protected" currentUserId={currentUserId}/>
                             <AuthRoute exact exact path="/channels/:channelId" component={MainChat} routeType="protected" currentUserId={currentUserId}/>
                             <AuthRoute exact path="/dms/:dmID" component={DMChat} routeType="protected" currentUserId={currentUserId}/>
+                            <Redirect from='/' to='/channels/5ce7290ac8f6f10ed2057a15' />
                           </Switch>
                         </div>
                       }}
