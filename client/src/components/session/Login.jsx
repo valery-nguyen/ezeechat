@@ -2,7 +2,7 @@ import './session.scss';
 
 import React from 'react';
 import { Mutation } from "react-apollo";
-
+import { Link } from 'react-router-dom';
 import Mutations from "../../graphql/mutations";
 const { LOGIN_USER } = Mutations;
 
@@ -38,7 +38,10 @@ class Login extends React.Component {
       >
         {loginUser => (
           <div className="signup-login-form-container">
-            <h1>Welcome to EzeeChat</h1>
+            <div className="login-header">
+              <h1>EzeeChat</h1>
+              <Link to="/signup"><p>Sign Up</p></Link>
+            </div>
             <form className="signup-login-form"
               onSubmit={e => {
                 e.preventDefault();
@@ -50,7 +53,7 @@ class Login extends React.Component {
                 });
               }}
             >
-              <h2>Sign in</h2>
+              <h2>Sign In</h2>
               <input
                 value={this.state.email}
                 onChange={this.update("email")}
@@ -62,8 +65,7 @@ class Login extends React.Component {
                 type="password"
                 placeholder="Password"
               />
-              <button type="submit">Log In</button>
-              
+              <button type="submit">Sign In</button>
             </form>
           </div>
         )}
