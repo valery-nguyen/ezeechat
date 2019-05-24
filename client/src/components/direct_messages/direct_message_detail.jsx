@@ -17,15 +17,21 @@ class DirectMessageDetail extends React.Component {
   }
 
   render() {
+
     return (
       <Query query={FETCH_DIRECT_MESSAGES} variables={{ id: this.props.id }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (!data.directmessage) return null;
           if (error) return <p>Error</p>;
+          const receiverUserEmail =
+            this.props.currentUserId ===
+            data.directmessage.users[1]._id
+              ? data.directmessage.users[0].email
+              : data.directmessage.users[1].email;
           return (
             <div className="channel-links-container">        
-              <Link className="channel-link" to={`/dms/${data.directmessage._id}`}><h3 className="channel-name" >{`${data.directmessage.users[1].email}`}</h3></Link>
+              <Link className="channel-link" to={`/dms/${data.directmessage._id}`}><h3 className="channel-name" >{`${receiverUserEmail}`}</h3></Link>
             </div>
           );
         }}

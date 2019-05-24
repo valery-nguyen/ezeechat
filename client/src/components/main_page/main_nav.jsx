@@ -18,7 +18,7 @@ const MainNav = props => {
               if (data.isLoggedIn) {
                 return <div className="nav">
                   <div className="left-panel">
-                    <h1>EzeeChat</h1>
+                    <h1 className="app-header">EzeeChat</h1>
                     <UserChannelIndex currentUserId={props.currentUserId} />
                     <DirectMessageIndex currentUserId={props.currentUserId} />
                     <div className="log-out-button-container">

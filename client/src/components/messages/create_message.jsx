@@ -70,15 +70,17 @@ class CreateMessage extends Component {
         }}
       >
         {(newMessage, { data }) => (
-          <div className="send-message-form-div">
-            <form className="send-message-form" onSubmit={e => this.handleSubmit(e, newMessage)}>
-              <input
-                onChange={this.update("body")}
-                value={this.state.body}
-                placeholder="Send a message"
-                className="message-input"
-              />
-            </form>
+          <div className="message-field-box">
+            <div className="send-message-form-div">
+              <form className="send-message-form" onSubmit={e => this.handleSubmit(e, newMessage)}>
+                <input
+                  onChange={this.update("body")}
+                  value={this.state.body}
+                  placeholder="Send a message"
+                  className="message-input"
+                />
+              </form>
+            </div>
           </div>
         )}
       </Mutation>

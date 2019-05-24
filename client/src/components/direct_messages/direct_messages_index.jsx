@@ -25,7 +25,7 @@ class DirectMessageIndex extends React.Component {
               ) : (
                   <div>
                     {data.fetchUserMessages.map(message => {
-                      return <DirectMessageDetail key={message._id} id={message._id} />;
+                      return <DirectMessageDetail key={message._id} id={message._id} currentUserId={this.props.currentUserId} />;
                     })}
                   </div>
                 )}

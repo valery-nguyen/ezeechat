@@ -6,7 +6,7 @@ import ChannelDetail from './ChannelDetail';
 import Queries from "../../graphql/queries";
 import { Link } from "react-router-dom";
 
-const { FETCH_CHANNELS } = Queries;
+const { FETCH_CHANNELS, CURRENT_USER } = Queries;
 
 class ChannelIndex extends React.Component {
   render() {
@@ -15,41 +15,55 @@ class ChannelIndex extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error</p>;
-
+          const channelData = data;
           return (
-
-            <div className="whole-index">
-              <div className="channel-index">
-                <div className="channel-browse-header">
-                  <h3 className="channel-index-header">Browse channels</h3>
-                  <Link to="/channels/new"><button className="create-channel-button">Create Channel</button></Link>
-                </div>
-                <div>
-                <form className="channel-search">
-                  <input
-                    placeholder="Search channels"
-                    className="channel-search-input"
-                  />
-                </form>
-                </div>
-                {!data.channels || !data.channels.length ? (
-                  null
-                ) : (
-                    <div>
-                      {data.channels.map(channel => {
-                        return <ChannelDetail key={channel._id} id={channel._id} />;
-                      })}
+          <Query query={CURRENT_USER}>
+            {({ data }) => {
+              const userId = data.currentUserId;
+              let inChannel = false;
+              return (
+                
+               <div className="whole-index">
+                  <div className="channel-index">
+                    <div className="channel-browse-header">
+                      <h3 className="channel-index-header">Browse channels</h3>
+                      <button className="create-channel-button">Create Channel</button>
                     </div>
-                  )}
-              </div>
-              <div className="exit-div">
-                <div className="exit-box">
-                  <a className="channel-index-exit" href={`/#/mainchat/`}>&#215;</a><br/>
-                  <p className="esc" >esc</p>
+                  
+                    <div>
+                    <form className="channel-search">
+                      <input
+                        placeholder="Search channels"
+                        className="channel-search-input"
+                      />
+                    </form>
+                    
+                    </div>
+                    {!channelData.channels || !channelData.channels.length ? (
+                      null
+                    ) : (
+                        <div>
+                          {channelData.channels.map(channel => {
+                            inChannel = false;
+                            channel.users.forEach(user => {
+                              if (user._id === userId) inChannel = true;
+                            })
+                            if (!inChannel) return <ChannelDetail key={channel._id} id={channel._id} userId={userId}/>;
+                          })}
+                        </div>
+                      )}
+                  </div>
+                  <div className="exit-div">
+                    <div className="exit-box">
+                      <a className="channel-index-exit" href={`/#/mainchat/`}>&#215;</a><br/>
+                      <p className="esc" >esc</p>
+                    </div>
+                  </div>  
                 </div>
-              </div>  
-            </div>
-          );
+              );
+            }}
+          </Query>
+          )
         }}
       </Query>
     )

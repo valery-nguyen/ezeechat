@@ -6,6 +6,7 @@ import Queries from "../../graphql/queries";
 import Mutations from "../../graphql/mutations";
 import Subscriptions from "../../graphql/subscriptions";
 import CreateMessage from './create_message';
+import { HeaderConsole } from './../main_page/header_console';
 const { FETCH_CHANNEL, FETCH_MESSAGES } = Queries;
 const { DELETE_MESSAGE } = Mutations;
 const { NEW_MESSAGE_SUBSCRIPTION, REMOVED_MESSAGE_SUBSCRIPTION } = Subscriptions;
@@ -25,7 +26,7 @@ class MainChat extends React.Component {
           if (loading) return "Loading...";
           if (error) return `Error! ${error.message}`;
           if (!data) return null;
-
+          let channelName = data.channel.name;
           let allMessages = [].concat(data.channel.messages);
           let allMessagesIds = data.channel.messages.map(message => message._id);
           return (
@@ -50,39 +51,44 @@ class MainChat extends React.Component {
                     allMessagesIds.splice(removedMessageIdx, 1);
                   }
 
-                  return <div className="main-chat-window">
-                    <ul className="message-list">
-                      {allMessages.map((message, idx) => (
-                        <li className="message-element" key={idx}>
-                          <div className="message-object">
-                          <img className="message-pic" src={require('./pika.jpg')} alt="pika"/>
-                            <div className="message-box">
-                              <div className="message-info">
-                                <p className="message-author">{message.author}</p>
-                                <p className="message-date">{message.date}</p>
-                              </div>
-                              <p className="message-body">{message.body}</p>
-                            </div>
-                          </div>
-
-                          {/* <Mutation
-                            mutation={DELETE_MESSAGE}
-                            variables={{ id: message._id }}
-                          >
-                            {(deleteMessage, { data }) => {
-                                return <div>
-                                  <form onSubmit={e => {e.preventDefault(); return deleteMessage(message._id)}}>
-                                    <button type="submit">Remove Message</button>
-                                  </form>
+                  return (
+                    <div>
+                      <HeaderConsole name={"#" + channelName}/>
+                      <div className="main-chat-window">
+                        <ul className="message-list">
+                          {allMessages.map((message, idx) => (
+                            <li className="message-element" key={idx}>
+                              <div className="message-object">
+                              <img className="message-pic" src={require('./pika.jpg')} alt="pika"/>
+                                <div className="message-box">
+                                  <div className="message-info">
+                                    <p className="message-author">{message.author}</p>
+                                    <p className="message-date">{message.date}</p>
+                                  </div>
+                                  <p className="message-body">{message.body}</p>
                                 </div>
-                              }
-                            }
-                          </Mutation> */}
-                        </li>
-                      ))}
-                    </ul>
-                    <CreateMessage />
-                  </div>
+                              </div>
+
+                              {/* <Mutation
+                                mutation={DELETE_MESSAGE}
+                                variables={{ id: message._id }}
+                              >
+                                {(deleteMessage, { data }) => {
+                                    return <div>
+                                      <form onSubmit={e => {e.preventDefault(); return deleteMessage(message._id)}}>
+                                        <button type="submit">Remove Message</button>
+                                      </form>
+                                    </div>
+                                  }
+                                }
+                              </Mutation> */}
+                            </li>
+                          ))}
+                        </ul>
+                        <CreateMessage />
+                      </div>
+                    </div>  
+                  )  
                 }}
                 </Subscription>
               }}
