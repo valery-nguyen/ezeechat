@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
 }
 
 .log-out-button {
@@ -10,6 +11,8 @@
   justify-content: center;
   color: rgb(197,183,198);
   width: 100%;
+  padding: 10px;
+  // margin-right: 10px;
 }
 
 .log-out-button:hover {
@@ -25,9 +28,8 @@
 .direct-message-header {
   h5 {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    padding-left: 5px;
   }
   span {
     font-size: 18px;
@@ -118,7 +120,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-left: 15px;
+  padding-left: 11px;
 }
 
 .dm-name-container:hover {
@@ -133,7 +135,7 @@
 
 .dm-link h3 {
   color: rgb(197,183,198);
-  font-size: 15px;
+  font-size: 13px;
   text-decoration: none;
   width: 100%;
   font-weight: lighter;

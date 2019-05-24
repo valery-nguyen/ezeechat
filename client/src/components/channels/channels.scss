@@ -4,7 +4,7 @@
 
 #add-a-channel {
   color: rgb(197,183,198);
-  font-size: 15px;
+  font-size: 14px;
   text-decoration: none;
   width: 100%;
   font-weight: lighter;
@@ -14,7 +14,7 @@
   margin: 0;
   box-sizing: border-box;
   margin-left: 15px;
-  font-weight: bold;
+  // font-weight: bold;
   // margin-bottom: 10px;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .channel-header {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   margin: 0;
   padding-top: 5px;
@@ -44,12 +44,16 @@
 
 .channel-link h3 {
   color: rgb(197,183,198);
-  font-size: 15px;
+  font-size: 13px;
   text-decoration: none;
   width: 100%;
   font-weight: lighter;
   padding-right: 10px;
   margin: 3px 2px;
+}
+
+.channel-link {
+  width: 100%;
 }
 
 .channel-index-link {
