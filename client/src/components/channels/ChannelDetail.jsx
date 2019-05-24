@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Queries from "../../graphql/queries";
 import Mutations from "../../graphql/mutations";
 import { withRouter } from "react-router";
-const { FETCH_CHANNEL } = Queries;
+const { FETCH_CHANNEL, FETCH_USER_CHANNELS } = Queries;
 const { ADD_CHANNEL_USER, REMOVE_CHANNEL_USER } = Mutations;
 
 class ChannelDetail extends React.Component {
@@ -23,9 +23,9 @@ class ChannelDetail extends React.Component {
     e.preventDefault();
     addChannelUser({
       variables: {
-        id: this.props.id,
+        id: channelId,
       }
-    });
+    }).then(this.props.history.push(`/channels/${channelId}`));
   }
 
   leaveChannel(e, removeChannelUser) {
@@ -68,12 +68,14 @@ class ChannelDetail extends React.Component {
                   <Mutation
                     mutation={ADD_CHANNEL_USER}
                     onError={err => this.setState({ message: err.message })}
-                    onCompleted={data => {
-                      const { name } = data.addChannelUser;
-                      this.setState({
-                        message: `You joined channel ${name}`
-                      });
-                    }}
+                    refetchQueries={() => [{ query: FETCH_USER_CHANNELS, variables: {id: this.props.userId} }]}
+                    // onCompleted={data => {
+                    //   const { _id } = data.addChannelUser;
+                    //   // this.setState({
+                    //   //   message: `You joined channel ${name}`
+                    //   // });
+                    //   this.props.history.push(`/channels/${_id}`);
+                    // }}
                   >
                     {(addChannelUser, { data }) => (
                       <div>
