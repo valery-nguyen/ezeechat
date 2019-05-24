@@ -62,16 +62,27 @@ class CreateChannel extends Component {
         }}
       >
         {(createChannel, { data }) => (
-          <div>
-            <form onSubmit={e => this.handleSubmit(e, createChannel)}>
-              <input
-                onChange={this.update("name")}
-                value={this.state.name}
-                placeholder="Name"
-              />
-              <button type="submit">Create Channel</button>
-            </form>
-            <p>{this.state.message}</p>
+          <div className="channel-index-create-container">
+            <div className="channel-index-create">
+              <div className="exit-div">
+                <div className="exit-box">
+                  <a className="channel-index-exit" href={`/#/mainchat/`}>&#215;</a><br />
+                  <p className="esc" >esc</p>
+                </div>
+              </div>  
+              <h3 className="channel-index-header">Create a new channel</h3>
+              <p>Slack gives your team the power to create as many channels you need to do your best work.</p>
+              <form className="channel-button-box channel-new-name-container" onSubmit={e => this.handleSubmit(e, createChannel)}>
+                <input
+                  className="channel-detail-box channel-new-name"
+                  onChange={this.update("name")}
+                  value={this.state.name}
+                  placeholder="Name"
+                />
+                <button className="create-channel-button" type="submit">Create Channel</button>
+              </form>
+              <p>{this.state.message}</p>
+            </div>
           </div>
         )}
       </Mutation>

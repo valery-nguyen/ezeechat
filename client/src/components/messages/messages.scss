@@ -1,17 +1,18 @@
 .send-message-form-div {
 	position: fixed;
 	bottom: 0;
-	left: 240px;
+	left: 220px;
 	right: 0;
 	padding-bottom: 20px;
 	padding-right: 20px;
+	padding-left: 20px;
 	padding-top: 10px;
 	border-width: 2px;
 	background-color:white;
 }
 
 .main-chat-window {
-	width: calc(100vw - 235px);
+	width: calc(100vw - 225px);
 	position: absolute;
 	right: 0;
 	top: 0;

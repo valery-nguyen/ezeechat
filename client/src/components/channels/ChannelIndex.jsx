@@ -4,6 +4,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import ChannelDetail from './ChannelDetail';
 import Queries from "../../graphql/queries";
+import { Link } from "react-router-dom";
 
 const { FETCH_CHANNELS } = Queries;
 
@@ -18,15 +19,11 @@ class ChannelIndex extends React.Component {
           return (
 
             <div className="whole-index">
-              
-
               <div className="channel-index">
-                
                 <div className="channel-browse-header">
                   <h3 className="channel-index-header">Browse channels</h3>
-                  <button className="create-channel-button">Create Channel</button>
+                  <Link to="/channels/new"><button className="create-channel-button">Create Channel</button></Link>
                 </div>
-              
                 <div>
                 <form className="channel-search">
                   <input
@@ -34,9 +31,7 @@ class ChannelIndex extends React.Component {
                     className="channel-search-input"
                   />
                 </form>
-                
                 </div>
-                  
                 {!data.channels || !data.channels.length ? (
                   null
                 ) : (
