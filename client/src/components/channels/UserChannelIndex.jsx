@@ -26,7 +26,7 @@ class UserChannelIndex extends React.Component {
                     })}
                   </div>
                 )}
-              <h3 className="channel-name-container"><Link id="add-a-channel" className="channel-link" to="/channels/">+ Add a channel</Link></h3>
+              <h3 ><Link id="add-a-channel" to="/channels/">+ Add a channel</Link></h3>
             </div>
           );
         }}

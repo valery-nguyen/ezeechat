@@ -1,11 +1,10 @@
 import React from "react";
 import { Mutation, Query } from "react-apollo";
-import { Link } from "react-router-dom";
 import Queries from "../../graphql/queries";
 import Mutations from "../../graphql/mutations";
 import { withRouter } from "react-router";
 const { FETCH_CHANNEL, FETCH_USER_CHANNELS } = Queries;
-const { ADD_CHANNEL_USER, REMOVE_CHANNEL_USER } = Mutations;
+const { ADD_CHANNEL_USER } = Mutations;
 
 class ChannelDetail extends React.Component {
   constructor(props){

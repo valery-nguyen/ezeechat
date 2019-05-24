@@ -65,9 +65,6 @@ class CreateMessage extends Component {
         mutation={NEW_MESSAGE}
         onError={err => this.setState({ message: err.message })}
         update={(cache, data) => this.updateCache(cache, data)}
-        onCompleted={data => {
-          const { body } = data.newMessage;
-        }}
       >
         {(newMessage, { data }) => (
           <div className="message-field-box">

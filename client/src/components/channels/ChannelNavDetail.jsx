@@ -5,7 +5,7 @@ import Queries from "../../graphql/queries";
 import Mutations from "../../graphql/mutations";
 import { withRouter } from "react-router";
 const { FETCH_CHANNEL } = Queries;
-const { ADD_CHANNEL_USER, REMOVE_CHANNEL_USER } = Mutations;
+const { REMOVE_CHANNEL_USER } = Mutations;
 
 class ChannelNavDetail extends React.Component {
   constructor(props){
@@ -63,7 +63,7 @@ class ChannelNavDetail extends React.Component {
                 {(removeChannelUser, { data }) => (
                   <div>
                     <form onSubmit={e => this.leaveChannel(e, removeChannelUser)}>
-                      <button type="submit">&#215;</button>
+                      <button className="leave-channel-button-x" type="submit">&#215;</button>
                     </form>
                     <p>{this.state.message}</p>
                   </div>

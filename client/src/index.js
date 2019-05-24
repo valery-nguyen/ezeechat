@@ -5,8 +5,6 @@ import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
-import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
 import { HashRouter } from 'react-router-dom';
 import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
@@ -17,10 +15,6 @@ const { VERIFY_USER } = Mutations;
 
 const cache = new InMemoryCache({
   dataIdFromObject: object => object._id || null
-});
-
-const errorLink = onError(({ graphQLErrors }) => {
-  if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
 });
 
 const httpLink = createHttpLink({
